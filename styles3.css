@@ -1,0 +1,225 @@
+* {
+    font-family: Arial, sans-serif;
+}
+body {
+    background: #f6f6f6;
+}
+
+#main-header {
+    background: linear-gradient(90deg, #fcb69f, #fff0db, #fcb69f);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+}
+
+#main-header button {
+    border: none;
+    transition: 0.3s ease;
+    color: #000000;
+}
+
+.fowardBtn {
+    background: none;
+    padding: 15px;
+    font-size: 20px;
+}
+.fowardBtn:hover {
+    transform: translateX(5px);
+}
+.backBtn {
+    background: none;
+    padding: 15px;
+    font-size: 20px;
+}
+.backBtn:hover {
+    transform: translateX(-5px);
+}
+
+#homeBtn {
+    background:  linear-gradient(165deg, #ffb9a2, #fff5e7, #ffb9a2);
+    border-radius: 15px 5px;
+    height: 40px;
+    width: 65px;
+    font-size: 25px;
+    margin-top: 22px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+#homeBtn:hover {
+    transform: translateY(3px);
+}
+#header-title {
+    margin-left: 20px;
+    font-size: 2rem;
+    color: #6e4f45;
+}
+
+#headerspace {
+    margin-top: 60px;
+}
+
+#pagetitle {
+    text-align: center;
+    margin-bottom: -15px;
+    padding: 20px;
+    margin-top: 15px;
+    color: #84665c;
+    position: fixed;
+    background-color: #f6f6f6;
+    width: 100%;
+    z-index: 998;
+
+}
+
+#parentpagetitle {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+/*-----------------------------------------------------------------------------------------*/
+
+
+
+#parentnavbar {
+    justify-content: center;
+    display: flex;
+    margin-top: 85px;
+    z-index: 999;
+}
+
+
+#navbar {
+    justify-content: center;
+    display: flex;
+    position: fixed;
+    z-index: 999;
+    background-color: #f6f6f6;
+    width: 100%;
+}
+
+#navbar button {
+    margin: 7px;
+    margin-top: 12px;
+    border-radius: 50px;
+    padding: 5px 28px;
+    background:  linear-gradient(165deg, #fcb69f, #fff0db, #fcb69f);
+    border: 2px;
+    border-style: solid;
+    border-color: #00000000;
+    transition: 0.3s ease;
+    font-size: 18px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+
+/*------------------------------------------------------------------------------------------------*/
+
+
+
+
+#parentuserlistContainer {
+    display: flex;
+    justify-content: center;
+}
+#userlistContainer {
+    background-color: #ffffff;
+    width: 80%;
+    display: none;
+    padding: 0 40px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+#userlistContainer h2 {
+    color: #84665c;
+    text-align: center;
+}
+
+#displayuserlistContainer {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.user-container {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+#userlistdivcontainer {
+    background: linear-gradient(135deg, #d5d5d5, #efefef, #fffaf200);
+    transition: 0.3s ease;
+    padding: 10px 20px;
+}
+#userlistdivcontainer:hover {
+    transform: translateX(5px);
+}
+/*-------------------------------*/
+
+
+#parentregisteruserContainer {
+    display: flex;
+    justify-content: center;
+}
+#registeruserContainer {
+    background-color: #ffffff;
+    width: 80%;
+    display: none;
+    padding: 0 40px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+#registeruserContainer h2 {
+    color: #84665c;
+    text-align: center;
+}
+#registeruserContainer label {
+    margin-left: 5px;
+}
+
+#registerbuttoncont {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+#unameInp, #uidnumberInp {
+    width: 95%;
+    border: 1px solid #fcb69f;
+    border-radius: 10px;
+    padding-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    padding-bottom: 10px;
+    transition: border-color 0.3s;
+}
+#registeruserBtn {
+    background-color: #3e8b40;
+    color: #ffffff;
+    border: none;
+    padding: 5px 20px;
+    cursor: pointer;
+    border-radius: 10px;
+    font-size: 1em;
+    transition: background-color 0.3s;
+    width: 70%;
+}
+#registeruserBtn:hover {
+    background-color: #4CAF50;
+}
+/*------------------------------------------------------------------------------------------------*/
+
+
+

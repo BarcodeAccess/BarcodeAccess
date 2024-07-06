@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Page</title>
+    <link rel="stylesheet" href="styles2.css">
+    <script src="https://unpkg.com/pica@latest/dist/pica.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <!--Header-->
+    <header id="main-header">
+        <button class="backBtn" onclick="goBack()" title="Back"><i class="fa-solid fa-chevron-left"></i></button>
+        <button id="homeBtn" onclick="goHome()" title="Home Page"><i class="fa-solid fa-house"></i></button>
+        <button class="fowardBtn" onclick="goNext()" title="Foward"><i class="fa-solid fa-chevron-right"></i></button>
+    </header>
+    <div id="parentpagetitle">
+        <div id="pagetitle">
+            <h2>Admin Portal</h1>
+        </div>
+    </div>
+
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+        function goHome() {
+            window.location.href = 'index.html';
+        }
+        function goNext() {
+            window.history.forward();
+        }
+    </script>
+<div id="parentnavbar">
+    <div id="navbar">
+        <button class="navbarbutton" data-specific-id="accesslistBtn" onclick="showAccessList()" title="Access Center">
+            <i class="fa-solid fa-barcode"></i>
+        </button>
+        <button class="navbarbutton" data-specific-id="grouplistBtn" onclick="showGroupList()" title="Group List">
+            <i class="fas fa-users"></i>
+        </button>
+        <button class="navbarbutton" data-specific-id="companydetailBtn" onclick="showCompanyDetails()" title="Company Details">
+            <i class="fa-solid fa-user"></i>
+        </button>
+        <button class="navbarbutton" data-specific-id="customidcardBtn" onclick="showCustomIdCard()" title="Custom Id Card">
+            <i class="fas fa-id-card"></i>
+        </button>
+        <button class="navbarbutton" data-specific-id="companysettingBtn" onclick="showSetting()" title="Setting">
+            <i class="fas fa-cog"></i>
+        </button>
+    </div>
+</div>
+<div id="headerspace"></div>
+
+
+    <div id="parentcompanydetailContainer">
+        <div id="companydetailContainer">
+            <div id="displaylogoContainer"></div>
+            <div id="displaycompanydetailContainer">
+                <p><strong>Name:</strong> <span id="companyName"></span></p>
+                <p><strong>Email:</strong> <span id="companyEmail"></span></p>
+                <p><strong>Address:</strong> <span id="companyAddress"></span></p>
+                <p><strong>Phone Number:</strong> <span id="companyNumber"></span></p>
+            </div>
+            <div id="signout">
+                <button id="signoutBtn">Sign Out</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="parentgrouplistContainer">
+        <div id="grouplistContainer">
+            <h2>Group List</h2>
+            <div id="grouplistinpbtn">
+                <input type="text" id="groupnameInp" placeholder="Create Group Name">
+                <button id="creategroupnameBtn">Create</button>
+            </div>
+            <div id="grouplist"></div>
+        </div>
+    </div>
+
+    <div id="parentaccesslistContainer">
+        <div id="accesslistContainer">
+            <h2>Access Center List</h2>
+            <button id="accessregistrationBtn">Register New Access Center</button>
+            <div id="accesslist"></div>
+        </div>
+    </div>
+
+    <div id="parentcustomidcardContainer">
+        <div id="customidcardContainer">
+            <h2>Custom Id Card</h2>
+            <div id="parentparentidcard">
+                <div id="parentidcardfront"class="parentidcard">
+                    <div id="idcardfront" class="idcard">
+                        <div id="displaylogoContainer2"></div>
+                        <div id="leftidcard">
+                            <h2 id="idcardtitle" contenteditable="true">ID CARD <i class="fa-solid fa-pen-to-square"></i></h2>
+                        </div>
+                        <div id="barcodecontainer">
+                            <img src="barcode.jpg" alt="barcode">
+                        </div>
+                        <div id="barcodecontainer2">
+                            <p>0123456789</p>
+                        </div>
+                        <div id="userdetailcontainer">
+                            <p id="Nametitle">Full Name</p>
+                        </div>
+                        <div id="userdetailcontainer2">
+                            <p id="Groupname">Group Name</p>
+                        </div>
+                        <div id="userdetailcontainer3">
+                            <img src="profile.png" alt="profile">
+                        </div>
+                    </div>
+                </div>
+                <div class="large-space">&nbsp;</div>
+                <div id="parentidcardfront" class="parentidcard" >
+                    <div id="idcardback" class="idcard" >
+                        <div id="backcardtitlecontainer">
+                            <p id="backcardtitle" contenteditable="true">Title <i class="fa-solid fa-pen-to-square"></i></p>
+                            <p id="backcardtitle2" contenteditable="true">Your text <i class="fa-solid fa-pen-to-square"></i></p>
+                            <p id="backcardtitle3">Address</p>
+                            <p id="backcardtitle4">Phone Number</p>
+                            <p id="backcardtitle5">Email</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="parentidcardsaveBtn">
+                <label for="colorInp2">Id Card Title Background Color</label>
+                <input id="colorInp2" type="color">
+                <label for="colorInp">Other Color</label>
+                <input id="colorInp" type="color">
+                <button id="idcardsaveBtn">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="parentcompanysettingcontainer">
+        <div id="companysettingcontainer">
+            <div id="setting">
+                <h2>Setting</h2>
+                <h4>Upload Logo <i class="fa-solid fa-circle-info" title="3:1 Image Crop-frame is recommended"></i> </h4>
+                <div id="companylogo">
+                    <input type="file" id="imageUpload" onchange="previewImage(event)" accept="image/*" />
+                    <br>
+                </div>
+                <div id="imagePreview"></div>
+                <hr>
+                <div id="companydetail">
+                    <label for="cnameInp">Name</label>
+                    <input type="text" id="cnameInp" placeholder="Name">
+                    <br>
+                    <label for="caddressInp">Address</label>
+                    <input type="text" id="caddressInp" placeholder="Address">
+                    <br>
+                    <label for="cphonenumberInp">Phone Number</label>
+                    <input type="text" id="cphonenumberInp" placeholder="Phone Number">
+                    <br>
+                    <div class="saveButton">
+                        <button type="submit" class="saveBtn">Save</button>
+                    </div>
+                    <div id="deleteacc">
+                        <button id="deleteaccBtn" title="This will delete all you data">Delete Account</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+<script>
+    document.getElementById('signoutBtn').addEventListener('click', function() {
+        localStorage.removeItem('company-info');
+        localStorage.removeItem('company-creds');
+        localStorage.removeItem('CompanylastClickedButton');
+        localStorage.removeItem('userlist-click');
+        localStorage.removeItem('UserListlastClickedButton');
+        localStorage.removeItem('UserDatalastClickedButton');
+        localStorage.removeItem('grouplist-click');
+        console.log('User deleted from authentication');
+        location.reload();
+    });
+</script>
+
+<script>
+    function previewImage(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+  
+        reader.onload = function(e) {
+          const imagePreview = document.getElementById('imagePreview');
+          imagePreview.innerHTML = `<img src="${e.target.result}" alt="Selected Image" style="width: 210px; height: 70px;" />`;
+        }
+  
+        reader.readAsDataURL(file);
+      }
+    }
+  </script>
+  
+  
+<script>
+    const colorInput = document.getElementById('colorInp');
+    const colorInput2 = document.getElementById('colorInp2');
+    const userDetailContainer = document.getElementById('userdetailcontainer');
+    const parentIdCards = document.querySelectorAll('.parentidcard');
+    const leftIdCard = document.getElementById('leftidcard');
+
+    colorInput.addEventListener('input', (event) => {
+        const newColor = event.target.value;
+        userDetailContainer.style.backgroundColor = newColor;
+        parentIdCards.forEach(card => {
+            card.style.borderLeftColor = newColor;
+            card.style.borderRightColor = newColor;
+        });
+    });
+
+    colorInput2.addEventListener('input', (event) => {
+        const newColor = event.target.value;
+        leftIdCard.style.backgroundColor = newColor;
+    });
+</script>
+
+<script>
+    // Function to handle button click and update localStorage
+    function handleButtonClick(buttonId) {
+        // Remove styles from previously clicked button, if any
+        var lastClickedButton = localStorage.getItem("CompanylastClickedButton");
+        if (lastClickedButton) {
+            var lastButton = document.querySelector(`[data-specific-id="${lastClickedButton}"]`);
+            if (lastButton) {
+                lastButton.style.background = "";
+                lastButton.style.border = "";
+                lastButton.style.transform = "";
+            }
+        }
+    
+        // Set new localStorage value for CompanylastClickedButton
+        localStorage.setItem("CompanylastClickedButton", buttonId);
+    
+        // Update style for the clicked button
+        var button = document.querySelector(`[data-specific-id="${buttonId}"]`);
+        if (button) {
+            button.style.background = "linear-gradient(165deg, #d9d9d9, #ffffff, #d9d9d9)";
+            button.style.border = "2px solid #bbbbbb";
+            button.style.transform = "translateY(10px)";
+        }
+    }
+    
+    // Function to continuously monitor localStorage and update button styles
+    function checkLocalStorage() {
+        if (typeof(Storage) !== "undefined") {
+            var lastClickedButton = localStorage.getItem("CompanylastClickedButton");
+    
+            // Remove styles from previously clicked button, if any
+            var buttons = document.querySelectorAll('[data-specific-id]');
+            buttons.forEach(function(btn) {
+                if (btn.dataset.specificId !== lastClickedButton) {
+                    btn.style.background = "";
+                    btn.style.border = "";
+                    btn.style.transform = "";
+                }
+            });
+    
+            // Set background color and border for the currently stored button
+            if (lastClickedButton) {
+                var button = document.querySelector(`[data-specific-id="${lastClickedButton}"]`);
+                if (button) {
+                    button.style.background = "linear-gradient(165deg, #d9d9d9, #fcfcfc, #d9d9d9)";
+                    button.style.border = "2px solid #bbbbbb";
+                    button.style.transform = "translateY(10px)";
+                }
+            }
+        } else {
+            console.log("LocalStorage is not supported in this browser.");
+        }
+    }
+    
+    // Call the checkLocalStorage function initially
+    checkLocalStorage();
+    
+    setInterval(checkLocalStorage, 10);
+</script>
+
+<script>
+    function checkCompanyCreds() {
+        if (!localStorage.getItem('company-creds')) {
+            alert('Please login again.');
+            window.location.href = 'loginCompany.html';
+        }
+    }
+    // Call the function when the page loads
+    window.onload = checkCompanyCreds;
+</script>
+
+<script>
+    document.getElementById('accessregistrationBtn').addEventListener('click', function() {
+        window.location.href = 'registerAccess.html';
+    });
+</script>
+
+
+<script>
+    // Functions to show/hide containers
+    function showCompanyDetails() {
+        document.getElementById('companydetailContainer').style.display = 'block';
+        document.getElementById('grouplistContainer').style.display = 'none';
+        document.getElementById('accesslistContainer').style.display = 'none';
+        document.getElementById('customidcardContainer').style.display = 'none';
+        document.getElementById('companysettingcontainer').style.display = 'none';
+    }
+    function showCustomIdCard() {
+        document.getElementById('customidcardContainer').style.display = 'block';
+        document.getElementById('grouplistContainer').style.display = 'none';
+        document.getElementById('accesslistContainer').style.display = 'none';
+        document.getElementById('companydetailContainer').style.display = 'none';
+        document.getElementById('companysettingcontainer').style.display = 'none';
+    }
+    function showGroupList() {
+        document.getElementById('grouplistContainer').style.display = 'block';
+        document.getElementById('accesslistContainer').style.display = 'none';
+        document.getElementById('companydetailContainer').style.display = 'none';
+        document.getElementById('customidcardContainer').style.display = 'none';
+        document.getElementById('companysettingcontainer').style.display = 'none';
+    }
+    function showAccessList() {
+        document.getElementById('accesslistContainer').style.display = 'block';
+        document.getElementById('grouplistContainer').style.display = 'none';
+        document.getElementById('companydetailContainer').style.display = 'none';
+        document.getElementById('customidcardContainer').style.display = 'none';
+        document.getElementById('companysettingcontainer').style.display = 'none';
+    }
+    function showSetting() {
+        document.getElementById('companysettingcontainer').style.display = 'block';
+        document.getElementById('accesslistContainer').style.display = 'none';
+        document.getElementById('grouplistContainer').style.display = 'none';
+        document.getElementById('companydetailContainer').style.display = 'none';
+        document.getElementById('customidcardContainer').style.display = 'none';
+    }
+</script>
+
+<script>
+    // Function to store a specific ID in localStorage
+    function storeButtonClick(event) {
+        const specificId = event.currentTarget.getAttribute('data-specific-id');
+        localStorage.setItem('CompanylastClickedButton', specificId);
+        console.log(`Stored ${specificId} in localStorage`);
+    }
+
+    // Function to add event listeners to buttons
+    function addClickListeners() {
+        const buttons = document.querySelectorAll('button[data-specific-id]');
+        buttons.forEach(button => {
+            button.addEventListener('click', storeButtonClick);
+        });
+    }
+
+    // Function to click the button that matches the specific ID in localStorage
+    function clickLastButton() {
+        const CompanylastClickedButtonId = localStorage.getItem('CompanylastClickedButton');
+        if (CompanylastClickedButtonId) {
+            const CompanylastClickedButton = document.querySelector(`button[data-specific-id="${CompanylastClickedButtonId}"]`);
+            if (CompanylastClickedButton) {
+                CompanylastClickedButton.click();
+                console.log(`Clicked button with data-specific-id ${CompanylastClickedButtonId} from localStorage`);
+            }
+        }
+    }
+
+    // Add event listeners when the DOM content is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+        addClickListeners();
+        clickLastButton();
+    });
+</script>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getDatabase, ref, remove, update, set, get, onValue, push, child } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+    import { getAuth, onAuthStateChanged, deleteUser } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
+
+    // Firebase configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyC3G_6BwwJAmKhUrF0pBqRaxBEQj67vTS8",
+        authDomain: "barcode-access.firebaseapp.com",
+        databaseURL: "https://barcode-access-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "barcode-access",
+        storageBucket: "barcode-access.appspot.com",
+        messagingSenderId: "97112837718",
+        appId: "1:97112837718:web:206f4d4d550153afcdb5f7",
+        measurementId: "G-D8RQZ58Y4G"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    const auth = getAuth(app);
+    const storage = getStorage(app);
+
+    // Get UID from local storage
+    const companyCreds = JSON.parse(localStorage.getItem('company-creds'));
+    const uid = companyCreds.uid;
+
+    // Function to fetch and display access list
+    function fetchAndDisplayAccessList() {
+        const accessListRef = ref(db, `Companies/${uid}/accesslist`);
+        onValue(accessListRef, (snapshot) => {
+            const accessListDiv = document.getElementById('accesslist');
+            accessListDiv.innerHTML = ''; // Clear previous content
+
+            snapshot.forEach((childSnapshot) => {
+                const accessData = childSnapshot.val();
+                const container = document.createElement('div');
+                container.className = 'access-container';
+
+                const accessNameElement = document.createElement('p');
+                accessNameElement.textContent = `Name: ${accessData.accessname}`;
+
+                const emailElement = document.createElement('p');
+                emailElement.textContent = `Email: ${accessData.email}`;
+
+                container.appendChild(accessNameElement);
+                container.appendChild(emailElement);
+
+                accessListDiv.appendChild(container);
+            });
+        });
+    }
+
+    // Call the function to fetch and display access list
+    fetchAndDisplayAccessList();
+
+    document.querySelector('.saveBtn').addEventListener('click', async () => {
+    // Retrieve input values
+    const address = document.getElementById('caddressInp').value;
+    const phoneNumber = document.getElementById('cphonenumberInp').value;
+    const name = document.getElementById('cnameInp').value;
+    const chosenColor = document.getElementById('colorInp').value;
+
+    // Update company details in the database
+    try {
+        await update(ref(db, 'Companies/' + uid), {
+            address: address,
+            phoneNumber: phoneNumber,
+            companyname: name,
+            chosenColor: chosenColor // Save the chosen color
+        });
+        alert('Data saved successfully.');
+    } catch (error) {
+        console.error('Error saving data: ', error);
+    }
+
+// Convert canvas to Blob with proper MIME type
+async function canvasToBlob(canvas, mimeType) {
+    return new Promise(resolve => {
+        canvas.toBlob(blob => {
+            resolve(blob);
+        }, mimeType);
+    });
+}
+
+// Handle image upload if an image is selected
+const file = document.getElementById('imageUpload').files[0];
+if (file) {
+    try {
+        // Create an off-screen canvas
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+
+        // Set the desired resolution scale factor
+        const scaleFactor = 5; // for example, 5x resolution
+
+        // Set canvas dimensions to the desired resolution
+        canvas.width = 210 * scaleFactor;
+        canvas.height = 70 * scaleFactor;
+
+        // Scale the context to match the resolution
+        ctx.scale(scaleFactor, scaleFactor);
+
+        const img = new Image();
+        img.src = URL.createObjectURL(file);
+
+        img.onload = async () => {
+            // Draw the image on the high-resolution canvas
+            ctx.drawImage(img, 0, 0, 210, 70);
+
+            // Use Pica to resize the high-resolution canvas to the target resolution
+            const pica = new window.pica();
+            const targetCanvas = document.createElement('canvas');
+            targetCanvas.width = 210;
+            targetCanvas.height = 70;
+
+            const resizedCanvas = await pica.resize(canvas, targetCanvas);
+
+            // Convert canvas to Blob with proper MIME type
+            const mimeType = 'image/png'; // Ensure PNG for transparency support
+            const blob = await canvasToBlob(resizedCanvas, mimeType);
+
+            // Upload the blob to Firebase Storage
+            const storageReference = storageRef(storage, `images/${uid}/logoimage.png`); // Ensure PNG extension
+            const snapshot = await uploadBytes(storageReference, blob);
+            console.log('Uploaded a blob or file!', snapshot);
+
+            // Get the download URL
+            const downloadURL = await getDownloadURL(storageReference);
+            console.log('File available at', downloadURL);
+
+            // Save the download URL to the Firebase Realtime Database
+            await set(ref(db, 'Companies/' + uid + '/imageurl'), downloadURL);
+
+            // Display the uploaded image
+            displayImage2(downloadURL);
+            displayImage(downloadURL);
+        };
+    } catch (error) {
+        console.error('Error processing image upload: ', error);
+        alert('Failed to process image upload.');
+    }
+}
+
+
+});
+
+
+
+    function displayImage(url) {
+        const displayContainer = document.getElementById('displaylogoContainer');
+        displayContainer.innerHTML = `<img src="${url}" alt="Uploaded Image" style="max-width: 100%; height: auto;" />`;
+    }
+    function displayImage2(url) {
+        const displayContainer = document.getElementById('displaylogoContainer2');
+        displayContainer.innerHTML = `<img src="${url}" alt="Uploaded Image" style="max-width: 100%; height: auto;" />`;
+    }
+
+    // Optionally, you can load and display the image when the page loads if it already exists in the database
+    async function loadImage() {
+        try {
+            const snapshot = await get(child(ref(db), `Companies/${uid}/imageurl`));
+            if (snapshot.exists()) {
+                const imageUrl = snapshot.val();
+                displayImage(imageUrl);
+                displayImage2(imageUrl);
+            } else {
+                console.log("No image found in the database.");
+            }
+        } catch (error) {
+            console.error('Error loading image: ', error);
+        }
+    }
+
+    // Load the image on page load
+    window.addEventListener('load', loadImage);
+
+
+    // Reference to the company details in the database
+    const companyRef = ref(db, 'Companies/' + uid);
+
+    // Fetch company details
+    get(companyRef).then((snapshot) => {
+        if (snapshot.exists()) {
+            const companyData = snapshot.val();
+            const companyName = companyData.companyname;
+            const companyEmail = companyData.email;
+            const companyAddress = companyData.address;
+            const companyNumber = companyData.phoneNumber;
+
+            // Display company details
+            document.getElementById('companyName').textContent = companyName;
+            document.getElementById('companyEmail').textContent = companyEmail;
+            document.getElementById('backcardtitle5').textContent = companyEmail;
+            document.getElementById('companyAddress').textContent = companyAddress;
+            document.getElementById('backcardtitle3').textContent = companyAddress;
+            document.getElementById('companyNumber').textContent = companyNumber;
+            document.getElementById('backcardtitle4').textContent = companyNumber;
+
+            // Set input field values
+            document.getElementById('caddressInp').value = companyAddress || '';
+            document.getElementById('cphonenumberInp').value = companyNumber || '';
+            document.getElementById('cnameInp').value = companyName || '';
+
+        } else {
+            console.log("No data available");
+        }
+    }).catch((error) => {
+        console.error(error);
+    });
+
+
+
+
+
+// Function to generate a sequential numeric key
+async function generateSequentialKey(uid) {
+    const groupListRef = ref(db, `Companies/${uid}/grouplist`);
+    const snapshot = await get(groupListRef);
+    const existingKeys = [];
+
+    if (snapshot.exists()) {
+        snapshot.forEach((childSnapshot) => {
+            existingKeys.push(childSnapshot.key);
+        });
+    }
+
+    let newKeyNumber = 1;
+    let newKey = newKeyNumber.toString().padStart(2, '0');
+
+    while (existingKeys.includes(newKey)) {
+        newKeyNumber++;
+        newKey = newKeyNumber.toString().padStart(2, '0');
+    }
+
+    return newKey;
+}
+
+// Function to create a group name in Firebase Realtime Database
+async function createGroupName() {
+    // Get UID from local storage
+    const companyCreds = JSON.parse(localStorage.getItem('company-creds'));
+    const uid = companyCreds.uid;
+
+    // Get input value (group name)
+    const groupName = document.getElementById('groupnameInp').value.trim();
+
+    // Check if group name is provided
+    if (groupName === '') {
+        alert('Please enter a group name.');
+        return;
+    }
+
+    // Generate a unique sequential key for the group
+    const newGroupKey = await generateSequentialKey(uid);
+
+    // Create data to be saved (in this case, just the group name)
+    const groupData = {
+        groupName: groupName
+    };
+
+    // Save the new group under its unique key
+    set(ref(db, `Companies/${uid}/grouplist/${newGroupKey}`), groupData)
+        .then(() => {
+            document.getElementById('groupnameInp').value = '';
+
+            // After creating the group, update the displayed group list
+            displayGroupList();
+        })
+        .catch((error) => {
+            console.error('Error creating group:', error);
+            alert('Failed to create group. Please try again.');
+        });
+}
+
+// Function to display the group list
+async function displayGroupList() {
+    // Get UID from local storage
+    const companyCreds = JSON.parse(localStorage.getItem('company-creds'));
+    const uid = companyCreds.uid;
+
+    // Define the path to the group list in the database
+    const groupListRef = ref(db, `Companies/${uid}/grouplist`);
+
+    // Reference to the group list container
+    const groupListContainer = document.getElementById('grouplist');
+    groupListContainer.innerHTML = ''; // Clear previous content
+
+    try {
+        // Fetch group list data once
+        const snapshot = await get(groupListRef);
+        if (snapshot.exists()) {
+            snapshot.forEach((childSnapshot) => {
+                const groupKey = childSnapshot.key;
+                const groupData = childSnapshot.val();
+
+                // Create container for each group item
+                const groupContainer = document.createElement('div');
+                groupContainer.classList.add('group-item-container');
+
+                // Click event listener on group container
+                groupContainer.addEventListener('click', () => {
+                    // Set group details in local storage
+                    const groupDetails = {
+                        grouplistuid: groupKey,
+                        groupName: groupData.groupName
+                    };
+                    localStorage.setItem('grouplist-click', JSON.stringify(groupDetails));
+                    localStorage.setItem('UserListlastClickedButton', 'userlistBtn');
+
+                    // Navigate to listpageCompany.html
+                    window.location.href = 'listpageCompany.html';
+                });
+
+                // Create HTML element to display group name
+                const groupElement = document.createElement('div');
+                groupElement.textContent = groupData.groupName;
+                groupElement.classList.add('group-item');
+
+                // Create delete button for the group item
+                const deleteButton = document.createElement('button');
+                deleteButton.title = 'Delete this group';
+                deleteButton.id = 'deleteBtn';
+                deleteButton.innerHTML = '<i class="fa-solid fa-trash"></i>';
+                deleteButton.classList.add('delete-button');
+                deleteButton.addEventListener('click', (event) => {
+                    event.stopPropagation(); // Prevent click event from bubbling to groupContainer
+                    // Call function to confirm before delete
+                    confirmDeleteGroup(groupKey, groupData.groupName);
+                    location.reload();
+                });
+
+                // Append group element and delete button to the group container
+                groupContainer.appendChild(groupElement);
+                groupContainer.appendChild(deleteButton);
+
+                // Append container to the main group list container
+                groupListContainer.appendChild(groupContainer);
+            });
+        }
+    } catch (error) {
+        console.error('Error fetching group list:', error);
+    }
+}
+// Function to confirm delete with a confirmation dialog
+function confirmDeleteGroup(groupKey, groupName) {
+    // Display confirmation dialog
+    if (confirm(`Are you sure you want to delete the group '${groupName}'?`)) {
+        deleteGroup(groupKey); // Call function to delete group
+    }
+}
+
+// Function to delete a group
+function deleteGroup(groupKey) {
+    // Get UID from local storage
+    const companyCreds = JSON.parse(localStorage.getItem('company-creds'));
+    const uid = companyCreds.uid;
+
+    // Define the path to the group in the database
+    const groupRef = ref(db, `Companies/${uid}/grouplist/${groupKey}`);
+
+    // Remove the group from the database
+    set(groupRef, null)
+        .then(() => {
+            console.log(`Group with key ${groupKey} deleted successfully.`);
+        })
+        .catch((error) => {
+            console.error('Error deleting group:', error);
+            alert('Failed to delete group. Please try again.');
+        });
+}
+
+    // Event listener for the create button
+    document.getElementById('creategroupnameBtn').addEventListener('click', createGroupName);
+
+    // Initial display of group list when page loads
+    displayGroupList();
+
+        // Save function
+        document.getElementById('idcardsaveBtn').addEventListener('click', () => {
+            const idcardtitle = document.getElementById('idcardtitle').innerText;
+            const backcardtitle = document.getElementById('backcardtitle').innerText;
+            const backcardtitle2 = document.getElementById('backcardtitle2').innerText;
+            const chosenColor = document.getElementById('colorInp').value;
+            const chosenColor2 = document.getElementById('colorInp2').value;
+
+            update(ref(db, `Companies/${uid}/idcard`), {
+                idcardtitle: idcardtitle,
+                backcardtitle: backcardtitle,
+                backcardtitle2: backcardtitle2,
+                color: chosenColor,
+                color2: chosenColor2
+            }).then(() => {
+                alert('ID card information saved successfully!');
+            }).catch((error) => {
+                console.error('Error saving ID card information:', error);
+            });
+        });
+
+        // Function to display data including the saved color
+        const idCardRef = ref(db, `Companies/${uid}/idcard`);
+        onValue(idCardRef, (snapshot) => {
+            const data = snapshot.val();
+            if (data) {
+                document.getElementById('idcardtitle').innerText = data.idcardtitle || 'ID CARD';
+                document.getElementById('backcardtitle').innerText = data.backcardtitle || 'Title';
+                document.getElementById('backcardtitle2').innerText = data.backcardtitle2 || 'Your text';
+                
+                // Check if the color data exists and apply it
+                if (data.color) {
+                    document.getElementById('userdetailcontainer').style.backgroundColor = data.color;
+                    const parentIdCards = document.querySelectorAll('.parentidcard');
+                    parentIdCards.forEach(card => {
+                        card.style.borderLeftColor = data.color;
+                        card.style.borderRightColor = data.color;
+                    });
+                }
+                if (data.color2) {
+                leftIdCard.style.backgroundColor = data.color2;
+                }
+            }
+        });
+
+        // Reference to the delete button
+        const deleteButton = document.getElementById('deleteaccBtn');
+
+        // Delete user data and authentication
+        deleteButton.addEventListener('click', () => {
+            const confirmation = confirm("Are you sure you want to delete your account? This action cannot be undone.");
+            if (confirmation) {
+                // Delete data from the database
+                const userRef = ref(db, `Companies/${uid}`);
+                remove(userRef)
+                    .then(() => {
+                        console.log('User data deleted from database');
+                        // Delete the user authentication
+                        const user = auth.currentUser;
+                        if (user) {
+                            deleteUser(user).then(() => {
+                                localStorage.removeItem('company-info');
+                                localStorage.removeItem('company-creds');
+                                localStorage.removeItem('CompanylastClickedButton');
+                                console.log('User deleted from authentication');
+                                location.reload();
+                            }).catch((error) => {
+                                console.error('Error deleting user from authentication', error);
+                            });
+                        } else {
+                            console.error('No user is currently signed in');
+                        }
+                    })
+                    .catch((error) => {
+                        console.error('Error deleting user data from database', error);
+                    });
+            }
+        });
+</script>
+
+</html>

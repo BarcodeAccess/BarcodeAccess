@@ -1,0 +1,688 @@
+* {
+    font-family: Arial, sans-serif;
+}
+body {
+    background: #f6f6f6;
+}
+
+#main-header {
+    background: linear-gradient(90deg, #fcb69f, #fff0db, #fcb69f);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+}
+
+#main-header button {
+    border: none;
+    transition: 0.3s ease;
+    color: #000000;
+}
+
+.fowardBtn {
+    background: none;
+    padding: 15px;
+    font-size: 20px;
+}
+.fowardBtn:hover {
+    transform: translateX(5px);
+}
+.backBtn {
+    background: none;
+    padding: 15px;
+    font-size: 20px;
+}
+.backBtn:hover {
+    transform: translateX(-5px);
+}
+
+#homeBtn {
+    background:  linear-gradient(165deg, #ffb9a2, #fff5e7, #ffb9a2);
+    border-radius: 15px 5px;
+    height: 40px;
+    width: 65px;
+    font-size: 25px;
+    margin-top: 22px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+#homeBtn:hover {
+    transform: translateY(3px);
+}
+#header-title {
+    margin-left: 20px;
+    font-size: 2rem;
+    color: #6e4f45;
+}
+
+#headerspace {
+    margin-top: 60px;
+}
+
+#pagetitle {
+    text-align: center;
+    margin-bottom: -15px;
+    padding: 20px;
+    margin-top: 15px;
+    color: #594139;
+    position: fixed;
+    background-color: #f6f6f6;
+    width: 100%;
+    z-index: 998;
+
+}
+
+#parentpagetitle {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+/*-----------------------------------------------------------------------------------------*/
+
+#parentnavbar {
+    justify-content: center;
+    display: flex;
+    margin-top: 85px;
+    z-index: 999;
+}
+
+
+#navbar {
+    justify-content: center;
+    display: flex;
+    position: fixed;
+    z-index: 999;
+    padding-bottom: 5px;
+    background-color: #f6f6f6;
+    width: 100%;
+}
+
+#navbar button {
+    margin: 7px;
+    margin-top: 12px;
+    border-radius: 50px;
+    padding: 5px 28px;
+    background:  linear-gradient(165deg, #fcb69f, #fff0db, #fcb69f);
+    border: 2px;
+    border-style: solid;
+    border-color: #00000000;
+    transition: 0.3s ease;
+    font-size: 20px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+
+/*------------------------------------------------------------------------------------------------*/
+
+
+
+
+
+#parentcompanydetailContainer {
+    display: flex;
+    justify-content: center;
+}
+#companydetailContainer {
+    border-radius: 5px;
+    background-color: #ffffff;
+    width: 80%;
+    display: none;
+    padding: 0 40px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+#displaylogoContainer {
+    margin-top: 40px;
+}
+
+#signout {
+    display: flex;
+    justify-content: end;
+    margin-bottom: 10px;
+}
+#signout button {
+    background-color: rgb(255, 22, 22);
+    padding: 4px 10px;
+    font-size: 13px;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: 0.1s ease;
+    color: white;
+}
+#signout button:hover {
+    background-color: rgb(224, 0, 0);
+    transform: scale(1.05);
+}
+/*---------------------------------------*/
+
+#parentgrouplistContainer {
+    display: flex;
+    justify-content: center;
+}
+
+#grouplistContainer {
+    background-color: #ffffff;
+    width: 80%;
+    display: none;
+    padding: 20px 40px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
+#grouplist {
+    color: #000000;
+}
+#grouplistContainer h2 {
+    text-align: center;
+    color: #84665c;
+    margin-bottom: 20px;
+    margin-top: 0px;
+    font-family: Arial, sans-serif;
+}
+
+#groupnameInp {
+    width: calc(100% - 80px);
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+#creategroupnameBtn {
+    padding: 10px 20px;
+    border: none;
+    background-color: #45a049;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#creategroupnameBtn:hover {
+    background-color: #4CAF50 ;
+}
+
+
+#grouplistinpbtn {
+    display: flex;
+}
+
+#deleteBtn {
+    padding: 10px;
+    font-size: 20px;
+    background: none;
+    color: red;
+    transition: 0.3s ease;
+}
+#deleteBtn:hover {
+    color: rgb(213, 0, 0);
+    transform: translateY(-3px);
+}
+/*---------------------------------------*/
+
+#parentcompanysettingcontainer {
+    display: flex;
+    justify-content: center;
+}
+#companysettingcontainer {
+    background-color: #ffffff;
+    width: 80%;
+    display: none;
+    padding: 0 40px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+#setting {
+    justify-content: center;
+    display: block;
+}
+#pagetitle, #grouplistContainer, #accesslistContainer, #customidcardContainer, #companysettingcontainer h2 {
+    color: #84665c;
+    margin-bottom: 20px;
+    text-align: center;
+}
+#imagePreview {
+    padding: 10px;
+    margin-bottom: -5px;
+}
+#companylogo {
+    display: flex;
+    justify-content: center;
+}
+
+#setting h4 {
+    color: #634c45;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+#setting label{
+    margin-left: 5px;
+}
+#cnameInp, #caddressInp, #cphonenumberInp {
+    width: 95%;
+    border: 1px solid #fcb69f;
+    border-radius: 10px;
+    padding-top: 10px;
+    padding: 10px;
+    padding-bottom: 10px;
+    transition: border-color 0.3s;
+}
+#imageUpload {
+    width: 95%;
+}
+
+#setting .fa-solid {
+    font-size: 15px;
+}
+
+#imageUpload:focus, #cnameInp:focus, #caddressInp:focus, #cphonenumberInp:focus {
+    border-color: #84665c;
+    outline: none;
+}
+
+#uploadButton {
+    background-color: #3e8b40;
+    color: #ffffff;
+    border: none;
+    padding: 5px 20px;
+    cursor: pointer;
+    border-radius: 10px;
+    font-size: 1em;
+    transition: background-color 0.3s;
+}
+
+.saveBtn {
+    background-color: #3e8b40;
+    color: #ffffff;
+    border: none;
+    padding: 5px 20px;
+    cursor: pointer;
+    border-radius: 10px;
+    font-size: 1em;
+    transition: background-color 0.3s;
+    width: 70%;
+}
+
+#uploadButton:hover, .saveBtn:hover {
+    background-color: #4CAF50;
+}
+
+label {
+    color: #84665c;
+    display: block;
+    margin-top: 15px;
+    font-size: 1em;
+    text-align: left;
+}
+
+.saveBtn {
+    font-size: 1.1em;
+    margin-bottom: 20px;
+    margin-top: 5px;
+}
+.saveButton {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+#deleteacc {
+    display: flex;
+    justify-content: end;
+}
+
+#deleteacc button {
+    background-color: red;
+    color: white;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 12px;
+    margin-bottom: 20px;
+    transition: 0.3s ease;
+}
+#deleteacc button:hover {
+    background-color: rgb(218, 0, 0);
+    transform: scale(1.05);
+}
+/*---------------------------------------*/
+#parentaccesslistContainer {
+    display: flex;
+    justify-content: center;
+}
+#accesslistContainer {
+    background-color: #ffffff;
+    width: 80%;
+    display: none;
+    padding: 0 40px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.access-container {
+    padding: 1px 20px;
+    margin-bottom: 10px;
+    text-align: left;
+    color: #000000;
+    border-radius: 5px;
+    background: linear-gradient(135deg, #d5d5d5, #efefef, #fffaf200);
+}
+
+#accessregistrationBtn {
+    background-color: #3e8b40;
+    color: #ffffff;
+    border: none;
+    padding: 5px 20px;
+    cursor: pointer;
+    border-radius: 10px;
+    font-size: 1em;
+    transition: background-color 0.3s;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+#accessregistrationBtn:hover {
+    background-color: #479f4a;
+}
+/*---------------------------------------*/
+
+#parentcustomidcardContainer {
+    display: flex;
+    justify-content: center;
+}
+#customidcardContainer {
+    background-color: #ffffff;
+    width: 80%;
+    display: none;
+    border-radius: 5px;
+    padding: 0 40px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+#parentparentidcard {
+    display: flex;
+    width: 100%;
+    margin-left: 5%;
+    justify-content: center;
+    padding: 10px;
+    transform: scale(0.9);
+    transform-origin: 0 0;
+}
+
+.parentidcard {
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    padding: 40px;
+    width: 240px;
+    border-radius: 10px;
+    height: 435px;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    margin-right: 20px;
+    margin-left: 20px;
+    border-left-width: 7px;
+    border-left-color: #2b0067;
+    border-left-style: solid;
+    border-right-width: 7px;
+    border-right-color: #2b0067;
+    border-right-style: solid;
+    border-top: none;
+    border-bottom: none;
+}
+.idcard {
+    margin-top: 350px;
+}
+.idcard p{
+    color: #000000;
+}
+
+@media screen and (max-width: 1000px) {
+    #parentparentidcard {
+        display: block;
+    }
+
+    #parentidcardsaveBtn {
+        display: block;
+        margin: -20px;
+    }
+}
+
+#displaylogoContainer2 {
+    display: flex;
+    position: absolute;
+    margin-top: -75px;
+    z-index: 100;
+    margin-left: -30px;
+}
+.large-space {
+    height: 40px;
+    display: flex;
+}
+
+#leftidcard {
+    background-color: #f3ebff;
+    display: flex;
+    width: 432px;
+    position: absolute;
+    height: 40px;
+    transform: rotate(-90deg);
+    margin-left: -236px;
+    margin-top: 200.7px;
+    justify-content: center;
+}
+
+#idcardtitle {
+    margin-top: 6px;
+    text-align: center;
+    text-wrap: nowrap;
+    color: #000000;
+    width: 400px;
+}
+#idcardtitle:focus {
+    outline: none;
+}
+
+#barcodecontainer {
+    position: absolute;
+    width: 280px;
+    display: flex;
+    justify-content: center;
+    margin-top: 380px;
+}
+#barcodecontainer2 {
+    position: absolute;
+    width: 280px;
+    display: flex;
+    justify-content: center;
+    margin-top: 400px;
+}
+
+#barcodecontainer img {
+    width: 200px;
+    height: auto;
+}
+
+#userdetailcontainer {
+    position: absolute;
+    background-color: #2b0067;
+    width: 280px;
+    display: flex;
+    justify-content: center;
+    margin-top: 260px;
+}
+
+#Nametitle {
+    color: #ffffff;
+    text-align: center;
+}
+#userdetailcontainer2 {
+    position: absolute;
+    width: 280px;
+    display: flex;
+    justify-content: center;
+    margin-top: 320px;
+}
+#userdetailcontainer3 {
+    position: absolute;
+    width: 280px;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+#userdetailcontainer3 img {
+    width: 230px;
+    height: auto;
+}
+
+#Groupname {
+    color: #000000;
+    text-align: center;
+    font-weight: bold;
+}
+
+#backcardtitlecontainer {
+    margin-top: -370px;
+    width: 280px;
+}
+
+#backcardtitle {
+    text-align: center;
+    padding: 10px;
+    font-weight: 800;
+    font-size: 18px;
+}
+#backcardtitle2 {
+    font-weight: 600;
+    text-align: left;
+}
+#backcardtitle3 {
+    text-align: center;
+    font-weight: 600;
+}
+#backcardtitle4 {
+    text-align: center;
+    font-weight: 600;
+}
+#backcardtitle5 {
+    margin-top: -10px;
+    text-align: center;
+    font-weight: 600;
+}
+#backcardtitle:focus {
+    outline: none;
+}
+#backcardtitle2:focus {
+    outline: none;
+}
+#idcardfront {
+    margin-left: -240px;
+    margin-top: 39px;
+}
+
+#idcardsaveBtn {
+    background-color: #45a049;
+    color: #ffffff;
+    border: none;
+    padding: 5px 20px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-top: 10px;
+    font-size: 1em;
+    transition: background-color 0.3s;
+    margin-bottom: 50px;
+}
+#colorInp {
+    background-color: #45a049;
+    color: #ffffff;
+    border: none;
+    margin-bottom: 15px;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 10px;
+    width: 80px;
+    margin-top: 10px;
+    font-size: 1em;
+    transition: background-color 0.3s;
+    margin-bottom: 50px;
+}
+#colorInp2 {
+    background-color: #45a049;
+    color: #ffffff;
+    border: none;
+    margin-bottom: 15px;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 10px;
+    width: 80px;
+    margin-top: 10px;
+    font-size: 1em;
+    transition: background-color 0.3s;
+    margin-bottom: 50px;
+}
+
+#idcardsaveBtn:hover {
+    background-color: #4CAF50;
+}
+#parentidcardsaveBtn {
+    justify-content: end;
+    display: flex;
+    margin-top: -50px;
+}
+/*------------------------------------------------------------------------------------------------*/
+
+
+
+
+.group-item-container {
+    margin-bottom: -10px;
+    margin-top: 20px;
+    padding: 5px 15px;
+    border-radius: 5px;
+    display: flex;
+    background: linear-gradient(135deg, #d5d5d5, #efefef, #fffaf200);
+    justify-content: space-between;
+    align-items: center; /* Center items vertically */
+    transition: 0.3s ease;
+  }
+  
+  .group-item-container:hover {
+    transform: translateX(5px);
+  }
+  
+
+
+
+  .group-item {
+    cursor: pointer;
+    /* Additional styles for individual group items if needed */
+  }
+  
+  .delete-button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .delete-button:hover {
+    background-color: #c82333;
+  }
+  
+  /* Center the delete button */
+  .delete-button-container {
+    display: flex;
+    align-items: center;
+  }

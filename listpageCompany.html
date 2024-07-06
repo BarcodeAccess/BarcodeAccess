@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Page</title>
+    <link rel="stylesheet" href="styles3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <!--Header-->
+    <header id="main-header">
+        <button class="backBtn" onclick="goBack()" title="Back"><i class="fa-solid fa-chevron-left"></i></button>
+        <button id="homeBtn" onclick="goHome()" title="Home Page"><i class="fa-solid fa-house"></i></button>
+        <button class="fowardBtn" onclick="goNext()" title="Foward"><i class="fa-solid fa-chevron-right"></i></button>
+    </header>
+
+    <div id="parentpagetitle">
+        <div id="pagetitle">
+            <h2 id="title">User List</h2>
+        </div>
+    </div>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+        function goHome() {
+            window.location.href = 'index.html';
+        }
+        function goNext() {
+            window.history.forward();
+        }
+    </script>
+    <div id="parentnavbar">
+        <div id="navbar">
+            <button class="navbarbutton" data-specific-id="registeruserBtn" onclick="showRegisterUser()">
+                <i class="fa-solid fa-user-plus"></i>
+            </button>
+            <button class="navbarbutton" data-specific-id="userlistBtn" onclick="showUserList()">
+                <i class="fa-solid fa-address-book"></i>
+            </button>
+        </div>
+    </div>
+
+    <div id="headerspace"></div>
+
+    
+    <div id="parentregisteruserContainer">
+        <div id="registeruserContainer">
+            <h2>Register User</h2>
+
+            <div class="label-input-div">
+                <label for="unameInp">Full Name</label>
+                <input type="text" id="unameInp" placeholder="Full Name">
+            </div>
+        
+            <div class="label-input-div">
+                <label for="uidnumberInp">Id</label>
+                <br>
+                <input type="text" id="uidnumberInp" placeholder="Id">
+            </div>
+            <div id="registerbuttoncont">
+                <button id="registeruserBtn">Register User</button>        
+            </div>
+
+        </div>
+    </div>
+    
+    <div id="parentuserlistContainer">
+        <div id="userlistContainer">
+            <h2>User List</h2>
+            <div id="displayuserlistContainer"></div>
+        </div>
+    </div>
+</body>
+
+<script>
+    // Function to update the title based on localStorage
+    function updateTitleFromLocalStorage() {
+        // Retrieve the value from localStorage
+        const groupData = localStorage.getItem('grouplist-click');
+        if (groupData) {
+            // Parse the JSON string
+            const groupObj = JSON.parse(groupData);
+            // Update the title if groupName exists
+            if (groupObj.groupName) {
+                document.getElementById('title').innerText = groupObj.groupName;
+            }
+        }
+    }
+
+    // Call the function to update the title on page load
+    updateTitleFromLocalStorage();
+</script>
+
+<script>
+    // Function to handle button click and update localStorage
+    function handleButtonClick(buttonId) {
+        // Remove styles from previously clicked button, if any
+        var lastClickedButton = localStorage.getItem("UserListlastClickedButton");
+        if (lastClickedButton) {
+            var lastButton = document.querySelector(`[data-specific-id="${lastClickedButton}"]`);
+            if (lastButton) {
+                lastButton.style.background = "";
+                lastButton.style.border = "";
+                lastButton.style.transform = "";
+            }
+        }
+    
+        // Set new localStorage value for UserListlastClickedButton
+        localStorage.setItem("UserListlastClickedButton", buttonId);
+    
+        // Update style for the clicked button
+        var button = document.querySelector(`[data-specific-id="${buttonId}"]`);
+        if (button) {
+            button.style.background = "linear-gradient(165deg, #d9d9d9, #ffffff, #d9d9d9)";
+            button.style.border = "2px solid #bbbbbb";
+            button.style.transform = "translateY(10px)";
+        }
+    }
+    
+    // Function to continuously monitor localStorage and update button styles
+    function checkLocalStorage() {
+        if (typeof(Storage) !== "undefined") {
+            var lastClickedButton = localStorage.getItem("UserListlastClickedButton");
+    
+            // Remove styles from previously clicked button, if any
+            var buttons = document.querySelectorAll('[data-specific-id]');
+            buttons.forEach(function(btn) {
+                if (btn.dataset.specificId !== lastClickedButton) {
+                    btn.style.background = "";
+                    btn.style.border = "";
+                    btn.style.transform = "";
+                }
+            });
+    
+            // Set background color and border for the currently stored button
+            if (lastClickedButton) {
+                var button = document.querySelector(`[data-specific-id="${lastClickedButton}"]`);
+                if (button) {
+                    button.style.background = "linear-gradient(165deg, #d9d9d9, #fcfcfc, #d9d9d9)";
+                    button.style.border = "2px solid #bbbbbb";
+                    button.style.transform = "translateY(10px)";
+                }
+            }
+        } else {
+            console.log("LocalStorage is not supported in this browser.");
+        }
+    }
+    
+    // Call the checkLocalStorage function initially
+    checkLocalStorage();
+    
+    setInterval(checkLocalStorage, 10);
+</script>
+
+<script>
+    function checkCompanyCreds() {
+        if (!localStorage.getItem('company-creds')) {
+            alert('Please login again.');
+            window.location.href = 'loginCompany.html';
+        }
+    }
+    // Call the function when the page loads
+    window.onload = checkCompanyCreds;
+</script>
+<script>
+    document.getElementById('uidnumberInp').addEventListener('input', function (e) {
+        // Remove non-alphanumeric characters
+        this.value = this.value.replace(/[^a-zA-Z0-9]/g, '');
+        
+        // Limit to 15 characters
+        if (this.value.length > 12) {
+            this.value = this.value.substring(0, 12);
+        }
+    });
+</script>
+<script>
+    // Functions to show/hide containers
+    function showRegisterUser() {
+        document.getElementById('registeruserContainer').style.display = 'block';
+        document.getElementById('userlistContainer').style.display = 'none';
+    }
+    function showUserList() {
+        document.getElementById('userlistContainer').style.display = 'block';
+        document.getElementById('registeruserContainer').style.display = 'none';
+    }
+</script>
+
+<script>
+    // Function to store a specific ID in localStorage
+    function storeButtonClick(event) {
+        const specificId = event.currentTarget.getAttribute('data-specific-id');
+        localStorage.setItem('UserListlastClickedButton', specificId);
+        console.log(`Stored ${specificId} in localStorage`);
+    }
+
+    // Function to add event listeners to buttons
+    function addClickListeners() {
+        const buttons = document.querySelectorAll('button[data-specific-id]');
+        buttons.forEach(button => {
+            button.addEventListener('click', storeButtonClick);
+        });
+    }
+
+    // Function to click the button that matches the specific ID in localStorage
+    function clickLastButton() {
+        const UserListlastClickedButtonId = localStorage.getItem('UserListlastClickedButton');
+        if (UserListlastClickedButtonId) {
+            const UserListlastClickedButton = document.querySelector(`button[data-specific-id="${UserListlastClickedButtonId}"]`);
+            if (UserListlastClickedButton) {
+                UserListlastClickedButton.click();
+                console.log(`Clicked button with data-specific-id ${UserListlastClickedButtonId} from localStorage`);
+            }
+        }
+    }
+
+    // Add event listeners when the DOM content is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+        addClickListeners();
+        clickLastButton();
+    });
+</script>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+    import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import { getStorage } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
+
+    document.addEventListener('DOMContentLoaded', () => {
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyC3G_6BwwJAmKhUrF0pBqRaxBEQj67vTS8",
+            authDomain: "barcode-access.firebaseapp.com",
+            databaseURL: "https://barcode-access-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "barcode-access",
+            storageBucket: "barcode-access.appspot.com",
+            messagingSenderId: "97112837718",
+            appId: "1:97112837718:web:206f4d4d550153afcdb5f7",
+            measurementId: "G-D8RQZ58Y4G"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        const auth = getAuth(app);
+        const storage = getStorage(app);
+
+        document.getElementById('registeruserBtn').addEventListener('click', () => {
+        const unameInp = document.getElementById('unameInp');
+        const uidnumberInp = document.getElementById('uidnumberInp');
+
+        if (unameInp && uidnumberInp) {
+            const userfullname = unameInp.value;
+            const useridnumber = uidnumberInp.value;
+
+            if (userfullname && useridnumber) {
+                if (useridnumber.length === 12) {
+                    const companyCreds = JSON.parse(localStorage.getItem('company-creds'));
+                    const grouplist = JSON.parse(localStorage.getItem('grouplist-click'));
+                    const groupname = JSON.parse(localStorage.getItem('grouplist-click')).groupName;
+
+                    if (companyCreds && grouplist) {
+                        const companyUid = companyCreds.uid;
+                        const grouplistuid = grouplist.grouplistuid;
+
+                        const newUserRef = ref(db, `Companies/${companyUid}/grouplist/${grouplistuid}/userlist/${useridnumber}`);
+                        set(newUserRef, {
+                            userfullname: userfullname,
+                            useridnumber: useridnumber,
+                            groupname: groupname
+                        }).then(() => {
+                            alert('User registered successfully!');
+                            location.reload();
+                        }).catch((error) => {
+                            console.error('Error registering user:', error);
+                        });
+                    } else {
+                        alert('Error: Company or group list information is missing in local storage.');
+                    }
+                } else {
+                    alert('User ID number must be exactly 12 characters.');
+                }
+            } else {
+                alert('Please fill in all fields.');
+            }
+        } else {
+            alert('Error: Input elements not found.');
+        }
+    });
+
+            // Function to load and display the user list
+            const loadUserList = () => {
+                const companyCreds = JSON.parse(localStorage.getItem('company-creds'));
+                const grouplist = JSON.parse(localStorage.getItem('grouplist-click'));
+
+                if (companyCreds && grouplist) {
+                    const companyUid = companyCreds.uid;
+                    const grouplistuid = grouplist.grouplistuid;
+
+                    const userlistRef = ref(db, `Companies/${companyUid}/grouplist/${grouplistuid}/userlist`);
+                    onValue(userlistRef, (snapshot) => {
+                        const displayuserlistContainer = document.getElementById('displayuserlistContainer');
+                        displayuserlistContainer.innerHTML = ''; // Clear the container
+                        const userlist = snapshot.val();
+                        for (const userid in userlist) {
+                            const user = userlist[userid];
+                            const userDiv = document.createElement('div');
+                            userDiv.id = `userlistdivcontainer`;
+                            userDiv.className = 'user-container';
+                            userDiv.innerHTML = `<strong>Name:</strong> ${user.userfullname} <br> <strong>ID:</strong> ${user.useridnumber}`;
+                            userDiv.addEventListener('click', () => {
+                                localStorage.setItem('userlist-click', JSON.stringify({
+                                    fullname: user.userfullname,
+                                    idnumber: user.useridnumber
+                                }));
+                                localStorage.setItem('UserDatalastClickedButton', 'userdetailBtn');
+                                window.location.href = 'userpageCompany.html';
+                            });
+                            displayuserlistContainer.appendChild(userDiv);
+                        }
+                    });
+                } else {
+                    alert('Error: Company or group list information is missing in local storage.');
+                }
+            };
+
+            // Load user list on page load
+            loadUserList();
+        });
+    </script>
+</script>
+
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login Admin</title>
+  <link rel="stylesheet" href="style1.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<!--Header-->
+<header id="main-header">
+  <button class="backBtn" onclick="goBack()" title="Back"><i class="fa-solid fa-chevron-left"></i></button>
+  <button id="homeBtn" onclick="goHome()" title="Home Page"><i class="fa-solid fa-house"></i></button>
+  <button class="fowardBtn" onclick="goNext()" title="Foward"><i class="fa-solid fa-chevron-right"></i></button>
+</header>
+<div id="headerspace"></div>
+
+<script>
+  function goBack() {
+      window.history.back();
+  }
+  function goHome() {
+      window.location.href = 'index.html';
+  }
+  function goNext() {
+      window.history.forward();
+  }
+</script>
+
+<body>
+    <div class="form-container">
+        <form id="MainForm">
+            <h2>Admin Login</h2>
+
+            <div class="label-input-div">
+                <label for="emailInp">Email Address</label>
+                <input type="email" id="emailInp" placeholder="Email Address">
+            </div>
+
+            <div class="label-input-div">
+                <label for="passwordInp">Password</label>
+                <input type="password" id="passwordInp" placeholder="Password">
+            </div>
+
+            <div class="show-hide-checkbox">
+                <input type="checkbox" id="togglePassword">
+                <label for="togglePassword">Show Password</label>
+            </div>
+            <label id="forgotpasslabel" style="cursor: pointer; display: block; text-decoration: underline; text-align: right; transition: color 0.1s;">Forgot Password</label>
+
+            <button type="submit" class="login-button">Login</button>
+        </form>
+    </div>
+</body>
+
+<script>
+    const togglePasswordCheckbox = document.getElementById('togglePassword');
+    const passwordInput = document.getElementById('passwordInp');
+
+    togglePasswordCheckbox.addEventListener('change', function () {
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+    });
+</script>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getDatabase, ref, set, child, get } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+    import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    
+    const firebaseConfig = {
+        apiKey: "AIzaSyC3G_6BwwJAmKhUrF0pBqRaxBEQj67vTS8",
+        authDomain: "barcode-access.firebaseapp.com",
+        databaseURL: "https://barcode-access-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "barcode-access",
+        storageBucket: "barcode-access.appspot.com",
+        messagingSenderId: "97112837718",
+        appId: "1:97112837718:web:206f4d4d550153afcdb5f7",
+        measurementId: "G-D8RQZ58Y4G"
+    };
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase();
+    const auth = getAuth(app);
+    const dbref = ref(db);
+
+    let EmailInp = document.getElementById('emailInp');
+    let PassInp = document.getElementById('passwordInp');
+    let MainForm = document.getElementById('MainForm');
+    let ForgotPassLabel = document.getElementById('forgotpasslabel');
+
+    let SignInUser = evt => {
+      evt.preventDefault();
+
+      signInWithEmailAndPassword(auth, EmailInp.value, PassInp.value)
+      .then((credentials) => {
+        console.log('admin signed in:', credentials.user.uid);  // Debugging: Log admin ID
+        get(child(dbref, 'Companies/' + credentials.user.uid)).then((snapshot) => {
+          if (snapshot.exists()) {
+            const userData = snapshot.val();
+            console.log('Admin data found:', userData);  // Debugging: Log Admin data
+            localStorage.setItem(`company-info`, JSON.stringify({
+              companyname: userData.companyname,
+              email: userData.email
+            }));
+            localStorage.setItem(`company-creds`, JSON.stringify(credentials.user));
+            localStorage.setItem('CompanylastClickedButton', 'companydetailBtn');
+            window.location.href = 'pageCompany.html';
+          } else {
+            alert('Admin data does not exist in database.');
+            console.error('No data available for Admin:', credentials.user.uid);  // Debugging: Log missing data
+          }
+        }).catch((error) => {
+          alert('Error fetching Admin data.');
+          console.error('Database read error:', error);  // Debugging: Log database error
+        });
+      })
+      .catch((error) => {
+        alert(error.message);
+        console.error('Authentication error:', error.code, error.message);  // Debugging: Log authentication error
+      });
+    }
+
+    let ForgotPassword = () => {
+      sendPasswordResetEmail(auth, EmailInp.value)
+      .then(() => {
+        alert("A Password Reset Link has been sent to your email");
+      })
+      .catch((error) => {
+        console.log(error.code);
+        console.log(error.message);
+      })
+    }
+
+    MainForm.addEventListener('submit', SignInUser);
+    ForgotPassLabel.addEventListener('click', ForgotPassword);
+  </script>
+</html>

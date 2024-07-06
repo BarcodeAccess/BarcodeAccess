@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="styles6.css">
+</head>
+<body>
+    <!--Header-->
+    <header id="main-header">
+        <button>Feedback</button>
+        <button>About Us</button>
+        <button>Contact Us</button>
+    </header>
+    <div id="headerspace"></div>
+<div id="maincontainer">
+    <div id="RegisterBtnContainer">
+        <h1>Barcode Access</h1>
+        <button class="homeButton" onclick="registerAdmin()">Register New Account</button>
+    </div>
+    <!---
+    <div id="LoginBtnContainer">
+        <button onclick="loginAdmin()">Login as admin</button>
+        <button onclick="loginAccess()">Login as scan access</button>
+    </div>-->
+
+    <div id="loadpageBtnContainer">
+        <div id="centered">
+            <button class="homeButton" onclick="pageAdmin()">Admin</button>
+            <button class="homeButton" onclick="pageAccess()">Scan Access</button>
+        </div>
+    </div>
+</div>
+
+</body>
+
+<script>
+    function registerAdmin() {
+        window.location.href = 'registerCompany.html';
+    }
+    function loginAdmin() {
+        window.location.href = 'loginCompany.html';
+    }
+    function loginAccess() {
+        window.location.href = 'loginAccess.html';
+    }
+    function pageAdmin() {
+        window.location.href = 'pageCompany.html';
+    }
+    function pageAccess() {
+        window.location.href = 'pageAccess.html';
+    }
+</script>
+</html>

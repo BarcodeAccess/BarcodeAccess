@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scanner Page</title>
+    <link rel="stylesheet" href="styles5.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <!--Header-->
+    <header id="main-header">
+        <button class="backBtn" onclick="goBack()" title="Back"><i class="fa-solid fa-chevron-left"></i></button>
+        <button id="homeBtn" onclick="goHome()" title="Home Page"><i class="fa-solid fa-house"></i></button>
+        <button class="fowardBtn" onclick="goNext()" title="Foward"><i class="fa-solid fa-chevron-right"></i></button>
+    </header>
+    <div id="parentpagetitle">
+        <div id="pagetitle">
+            <h2>Access Portal</h1>
+        </div>
+    </div>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+        function goHome() {
+            window.location.href = 'index.html';
+        }
+        function goNext() {
+            window.history.forward();
+        }
+    </script>
+    
+    <div id="parentnavbar">
+        <div id="navbar">
+            <button class="navbarbutton" data-specific-id="scanlistBtn" onclick="showScanList()" title="Scan History">
+                <i class="fa-solid fa-list"></i>
+            </button>
+            <button class="navbarbutton" data-specific-id="scanpageBtn" onclick="showScanPage()" title="Scan ID Card">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+            <button class="navbarbutton" data-specific-id="accessdetailBtn" onclick="showAccessDetails()" title="Access Detail">
+                <i class="fa-solid fa-user"></i>
+            </button>
+            <button class="navbarbutton" data-specific-id="accesssettingBtn" onclick="showSetting()" title="Setting">
+                <i class="fas fa-cog"></i>
+            </button>
+        </div>
+    </div>
+    <div id="headerspace"></div>
+
+    <div id="parentaccessdetailContainer">
+        <div id="accessdetailContainer">
+            <h2>Access Detail</h2>
+            <div id="displayaccesspictureContainer"></div>
+            <div id="signout">
+                <button id="signoutBtn">Sign Out</button>
+            </div>
+            <div id="table1container">
+                <table border="1">
+                    <tr>
+                        <th>Company Name</th>
+                        <td><span id="companyName"></span></td>
+                    </tr>
+                    <tr>
+                        <th>Name</th>
+                        <td><span id="accessName"></span></td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td><span id="accessEmail"></span></td>
+                    </tr>
+                    <tr>
+                        <th>Phone Number</th>
+                        <td><span id="accessphoneNumber"></span></td>
+                    </tr>
+                    <tr>
+                        <th>Address</th>
+                        <td><span id="accessAddress"></span></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="parentaccesssettingContainer">
+        <div id="accesssettingContainer">
+            <div id="setting">
+                <h2>Setting</h2>
+                <h4>Upload Logo <i class="fa-solid fa-circle-info" title="1:1 Image Crop-frame is recommended"></i></h4>
+                <div id="companylogo">
+                    <input type="file" id="imageUpload" accept="image/*" onchange="previewImage(event)" />
+                </div>
+                <div id="previewImage"></div>
+                <hr>
+                <div id="userdetail">
+                    <label for="anameInp">Name</label>
+                    <input type="text" id="anameInp" placeholder="Name">
+                    <br>
+                    <label for="aphonenumberInp">Phone Number</label>
+                    <input type="text" id="aphonenumberInp" placeholder="Phone Number">
+                    <br>
+                    <label for="aaddressInp">Address</label>
+                    <input type="text" id="aaddressInp" placeholder="Address">
+                    <br>
+                    <div class="saveButton">
+                        <button type="submit" class="saveBtn">Save</button>
+                    </div>
+                    <div id="deleteacc">
+                        <button id="deleteaccBtn" title="This will delete all you data">Delete Account</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="parentscanpageContainer">
+        <div id="scanpageContainer">
+            <h2>Id Scanner</h2>
+            <input id="useridscanInp" type="text">
+            <button id="scan-button" title="Scan Barcode"><i class="fa-solid fa-camera"></i></button>
+            <button id="cancel-button" title="Cancel"><i class="fa-solid fa-xmark"></i></button>
+            <div id="parentscanner-container">
+                <div id="scanner-container" class="hidden"></div>
+            </div>
+            <div id="parentdisplayaccessprofilepictureContainer">
+                <div id="displayaccessprofilepictureContainer"></div>
+                <img id="profilePicture3" src="profile.png" alt="">
+            </div>
+            <div id="table1container">
+                <table border="1">
+                    <tr>
+                        <th>Name</th>
+                        <td><span id="scanuserName"></span></td>
+                    </tr>
+                    <tr>
+                        <th>Id</th>
+                        <td><span id="scanuseridNumber"></span></td>
+                    </tr>
+                    <tr>
+                        <th>Group</th>
+                        <td><span id="scanusergroupName"></span></td>
+                    </tr>
+                    <tr>
+                        <th>Phone Number</th>
+                        <td><span id="scanuserphoneNumber"></span></td>
+                    </tr>
+                    <tr>
+                        <th>Address</th>
+                        <td><span id="scanuseraddress"></span></td>
+                    </tr>
+                </table>
+            </div>
+            <button id="inBtn">&nbsp; In &nbsp;</button>
+            <button id="outBtn">Out</button>
+        </div>
+    </div>
+
+    <div id="parentscanlistContainer">
+        <div id="scanlistContainer">
+            <h2>Scan History</h2>
+            <div id="clearhistory">
+                <button id="clearhistoryBtn" title="Clear All History?">Clear All History</button>
+            </div>
+            <div id="displayscanlisthistory"></div>
+        </div>
+    </div>
+</body>
+
+<script>
+    document.getElementById('signoutBtn').addEventListener('click', function() {
+        localStorage.removeItem('access-info');
+        localStorage.removeItem('access-creds');
+        localStorage.removeItem('AccesslastClickedButton');
+        localStorage.removeItem('groupuid');
+        localStorage.removeItem('useruid');
+        localStorage.removeItem('scanuserdata');
+        console.log('User deleted from authentication');
+        location.reload();
+    });
+</script>
+
+<script>
+    function clearStorageAndReload() {
+        // Remove items from local storage
+        localStorage.removeItem('scanuserdata');
+        localStorage.removeItem('groupuid');
+        localStorage.removeItem('useruid');
+
+        // Reload the page
+        location.reload();
+    }
+
+    // Add event listener to the cancel button
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const cancelButton = document.getElementById('cancel-button');
+        if (cancelButton) {
+            cancelButton.addEventListener('click', clearStorageAndReload);
+        }
+    });
+</script>
+
+<script>
+    document.getElementById('scan-button').addEventListener('click', function () {
+        const scannerContainer = document.getElementById('scanner-container');
+        const cancelButton = document.getElementById('cancel-button');
+        scannerContainer.classList.remove('hidden');
+        cancelButton.classList.remove('hidden');
+
+        let constraints = {
+            facingMode: "environment"
+        };
+
+        if (window.matchMedia("(max-width: 600px)").matches) {
+            constraints.width = 350;
+            constraints.height = 450;
+        } else {
+            constraints.width = 640;
+            constraints.height = 480;
+        }
+
+        Quagga.init({
+            inputStream: {
+                name: "Live",
+                type: "LiveStream",
+                target: scannerContainer,
+                constraints: constraints
+            },
+            decoder: {
+                readers: ["code_128_reader", "ean_reader", "ean_8_reader", "code_39_reader", "code_39_vin_reader", "codabar_reader", "upc_reader", "upc_e_reader", "i2of5_reader"]
+            },
+        }, function (err) {
+            if (err) {
+                console.log(err);
+                return;
+            }
+            Quagga.start();
+        });
+
+        Quagga.onDetected(function (result) {
+            const code = result.codeResult.code;
+            document.getElementById('useridscanInp').value = code;
+            Quagga.stop();
+            scannerContainer.classList.add('hidden');
+            cancelButton.classList.add('hidden');
+        });
+
+        cancelButton.addEventListener('click', function () {
+            Quagga.stop();
+            scannerContainer.classList.add('hidden');
+            cancelButton.classList.add('hidden');
+        });
+    });
+</script>
+
+<script>
+    function previewImage(event) {
+      const file = event.target.files[0];
+      
+      if (file) {
+        const reader = new FileReader();
+        
+        reader.onload = function(e) {
+          const img = document.createElement('img');
+          img.src = e.target.result;
+          
+          const previewDiv = document.getElementById('previewImage');
+          previewDiv.innerHTML = '';
+          previewDiv.appendChild(img);
+        }
+        
+        reader.readAsDataURL(file);
+      }
+    }
+    </script>
+
+<script>
+    // Function to handle button click and update localStorage
+    function handleButtonClick(buttonId) {
+        // Remove styles from previously clicked button, if any
+        var lastClickedButton = localStorage.getItem("AccesslastClickedButton");
+        if (lastClickedButton) {
+            var lastButton = document.querySelector(`[data-specific-id="${lastClickedButton}"]`);
+            if (lastButton) {
+                lastButton.style.background = "";
+                lastButton.style.border = "";
+                lastButton.style.transform = "";
+            }
+        }
+    
+        // Set new localStorage value for AccesslastClickedButton
+        localStorage.setItem("AccesslastClickedButton", buttonId);
+    
+        // Update style for the clicked button
+        var button = document.querySelector(`[data-specific-id="${buttonId}"]`);
+        if (button) {
+            button.style.background = "linear-gradient(165deg, #d9d9d9, #ffffff, #d9d9d9)";
+            button.style.border = "2px solid #bbbbbb";
+            button.style.transform = "translateY(10px)";
+        }
+    }
+    
+    // Function to continuously monitor localStorage and update button styles
+    function checkLocalStorage() {
+        if (typeof(Storage) !== "undefined") {
+            var lastClickedButton = localStorage.getItem("AccesslastClickedButton");
+    
+            // Remove styles from previously clicked button, if any
+            var buttons = document.querySelectorAll('[data-specific-id]');
+            buttons.forEach(function(btn) {
+                if (btn.dataset.specificId !== lastClickedButton) {
+                    btn.style.background = "";
+                    btn.style.border = "";
+                    btn.style.transform = "";
+                }
+            });
+    
+            // Set background color and border for the currently stored button
+            if (lastClickedButton) {
+                var button = document.querySelector(`[data-specific-id="${lastClickedButton}"]`);
+                if (button) {
+                    button.style.background = "linear-gradient(165deg, #d9d9d9, #fcfcfc, #d9d9d9)";
+                    button.style.border = "2px solid #bbbbbb";
+                    button.style.transform = "translateY(10px)";
+                }
+            }
+        } else {
+            console.log("LocalStorage is not supported in this browser.");
+        }
+    }
+    
+    // Call the checkLocalStorage function initially
+    checkLocalStorage();
+    
+    setInterval(checkLocalStorage, 10);
+</script>
+
+<script>
+    function checkCompanyCreds() {
+        if (!localStorage.getItem('access-creds')) {
+            alert('Please login again.');
+            window.location.href = 'loginAccess.html';
+        }
+    }
+    // Call the function when the page loads
+    window.onload = checkCompanyCreds;
+</script>
+<script>
+    // Functions to show/hide containers
+    function showAccessDetails() {
+        document.getElementById('accessdetailContainer').style.display = 'block';
+        document.getElementById('accesssettingContainer').style.display = 'none';
+        document.getElementById('scanpageContainer').style.display = 'none';
+        document.getElementById('scanlistContainer').style.display = 'none';
+    }
+    function showSetting() {
+        document.getElementById('accesssettingContainer').style.display = 'block';
+        document.getElementById('scanpageContainer').style.display = 'none';
+        document.getElementById('scanlistContainer').style.display = 'none';
+        document.getElementById('accessdetailContainer').style.display = 'none';
+    }
+    function showScanPage() {
+        document.getElementById('scanpageContainer').style.display = 'block';
+        document.getElementById('accesssettingContainer').style.display = 'none';
+        document.getElementById('accessdetailContainer').style.display = 'none';
+        document.getElementById('scanlistContainer').style.display = 'none';
+    }
+    function showScanList() {
+        document.getElementById('scanlistContainer').style.display = 'block';
+        document.getElementById('scanpageContainer').style.display = 'none';
+        document.getElementById('accessdetailContainer').style.display = 'none';
+        document.getElementById('accesssettingContainer').style.display = 'none';
+    }
+</script>
+
+
+
+<script>
+    // Function to store a specific ID in localStorage 
+    function storeButtonClick(event) {
+        const specificId = event.currentTarget.getAttribute('data-specific-id');
+        localStorage.setItem('AccesslastClickedButton', specificId);
+        console.log(`Stored ${specificId} in localStorage`);
+    }
+
+    // Function to add event listeners to buttons
+    function addClickListeners() {
+        const buttons = document.querySelectorAll('button[data-specific-id]');
+        buttons.forEach(button => {
+            button.addEventListener('click', storeButtonClick);
+        });
+    }
+
+    // Function to click the button that matches the specific ID in localStorage
+    function clickLastButton() {
+        const AccesslastClickedButtonId = localStorage.getItem('AccesslastClickedButton');
+        if (AccesslastClickedButtonId) {
+            const AccesslastClickedButton = document.querySelector(`button[data-specific-id="${AccesslastClickedButtonId}"]`);
+            if (AccesslastClickedButton) {
+                AccesslastClickedButton.click();
+                console.log(`Clicked button with data-specific-id ${AccesslastClickedButtonId} from localStorage`);
+            }
+        }
+    }
+
+    // Add event listeners when the DOM content is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+        addClickListeners();
+        clickLastButton();
+    });
+</script>
+
+<!--Scanner input function------------------------------------------------------------------>
+<script>
+    // Function to handle input changes
+    function handleInputChange(event) {
+        // Get the value from the input
+        const inputValue = event.target.value;
+
+        // Split the input value into groupuid and useruid
+        const [groupuid, useruid] = inputValue.split('-');
+
+        // Check if both groupuid and useruid are present
+        if (groupuid && useruid) {
+            // Set values in localStorage
+            localStorage.setItem('groupuid', groupuid);
+            localStorage.setItem('useruid', useruid);
+
+            // Optionally log the values to the console
+            console.log(`groupuid: ${groupuid}, useruid: ${useruid}`);
+        } else {
+            // Clear the values if the format is incorrect
+            localStorage.removeItem('groupuid');
+            localStorage.removeItem('useruid');
+        }
+
+        // Check if the input value has reached 15 characters
+        if (inputValue.length === 15) {  
+            location.reload();
+        }
+    }
+
+
+    // Add event listener to the input element
+    document.getElementById('useridscanInp').addEventListener('input', handleInputChange);
+</script>
+
+
+
+<!--Funtion to display scanned user data--------------------------------------->
+
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getDatabase, ref, get, remove, push, set, onValue, update } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+    import { getAuth, onAuthStateChanged, deleteUser  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
+
+    document.addEventListener('DOMContentLoaded', () => {
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyC3G_6BwwJAmKhUrF0pBqRaxBEQj67vTS8",
+            authDomain: "barcode-access.firebaseapp.com",
+            databaseURL: "https://barcode-access-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "barcode-access",
+            storageBucket: "barcode-access.appspot.com",
+            messagingSenderId: "97112837718",
+            appId: "1:97112837718:web:206f4d4d550153afcdb5f7",
+            measurementId: "G-D8RQZ58Y4G"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        const auth = getAuth(app);
+        const storage = getStorage(app);
+
+        // Get UIDs from local storage
+        const companyUid = JSON.parse(localStorage.getItem('access-info')).companyuid;
+        const accessUid = JSON.parse(localStorage.getItem('access-creds')).uid;
+        const accessname = JSON.parse(localStorage.getItem('access-info')).accessname;
+  
+        //reference of database structure
+        const accessRef = ref(db, `Companies/${companyUid}/accesslist/${accessUid}`);
+        const accessRef2 = ref(db, `Companies/${companyUid}/accesslist/${accessUid}/useraccesslist`);
+        const companyRef = ref(db, `Companies/${companyUid}`);
+        const { useruid, groupuid } = getLocalStorageValues();
+        const userRef = ref(db, `Companies/${companyUid}/grouplist/${groupuid}/userlist/${useruid}`);
+        const userRef2 = ref(db, `Companies/${companyUid}/grouplist/${groupuid}/userlist/${useruid}/accesslist`);
+
+        // Get the buttons
+        const inBtn = document.getElementById('inBtn');
+        const outBtn = document.getElementById('outBtn');
+
+        // In function
+        inBtn.addEventListener('click', async () => {
+            try {
+                // Retrieve data from localStorage
+                const scanData = JSON.parse(localStorage.getItem('scanuserdata'));
+                if (!scanData) {
+                    throw new Error('No scanuserdata found in localStorage.');
+                }
+
+                const groupname = scanData.groupname;
+                const username = scanData.userfullname;
+                const useridnumber = scanData.useridnumber;
+
+                // Generate a new unique key for the user access list
+                const newUserAccessRef = push(accessRef2);
+                const newUserRef2 = push(userRef2);
+
+                // Add data to Firebase Realtime Database
+                const accessData = {
+                    username: username,
+                    useruid: useridnumber,
+                    usergroupname: groupname,
+                    datetime: new Date().toISOString(),
+                    inout: 'In',
+                    accessname: accessname,
+                };
+
+                await set(newUserAccessRef, accessData);
+                await set(newUserRef2, accessData);
+                localStorage.removeItem('scanuserdata');
+                localStorage.removeItem('groupuid');
+                localStorage.removeItem('useruid');
+                location.reload();
+
+                console.log('User access data saved successfully.');
+            } catch (error) {
+                console.error('Error saving user access data:', error);
+            }
+        });
+
+        // Out function
+        outBtn.addEventListener('click', async () => {
+            try {
+                // Retrieve data from localStorage
+                const scanData = JSON.parse(localStorage.getItem('scanuserdata'));
+                if (!scanData) {
+                    throw new Error('No scanuserdata found in localStorage.');
+                }
+
+                const groupname = scanData.groupname;
+                const username = scanData.userfullname;
+                const useridnumber = scanData.useridnumber;
+
+                // Generate a new unique key for the user access list
+                const newUserAccessRef = push(accessRef2);
+                const newUserRef2 = push(userRef2);
+
+                // Add data to Firebase Realtime Database
+                const accessData = {
+                    username: username,
+                    useruid: useridnumber,
+                    usergroupname: groupname,
+                    datetime: new Date().toISOString(),
+                    inout: 'Out',
+                    accessname: accessname,
+                };
+
+                await set(newUserAccessRef, accessData);
+                await set(newUserRef2, accessData);
+                localStorage.removeItem('scanuserdata');
+                localStorage.removeItem('groupuid');
+                localStorage.removeItem('useruid');
+                location.reload();
+
+                console.log('User access data saved successfully.');
+            } catch (error) {
+                console.error('Error saving user access data:', error);
+            }
+        });
+
+
+
+
+
+
+
+
+
+
+        // Function to get values from localStorage
+        function getLocalStorageValues() {
+            // Retrieve values from localStorage
+            const useruid = localStorage.getItem('useruid');
+            const groupuid = localStorage.getItem('groupuid');
+
+            // Optionally log the values to the console
+            console.log(`useruid: ${useruid}`);
+            console.log(`groupuid: ${groupuid}`);
+
+            // Return the values as an object
+            return { useruid, groupuid };
+        }
+
+        // Example usage of the function
+
+
+        // Function to fetch data from userRef and set it in localStorage
+        function fetchAndStoreUserData() {
+            onValue(userRef, (snapshot) => {
+                if (snapshot.exists()) {
+                    const data = snapshot.val();
+                    // Set data to localStorage
+                    localStorage.setItem('scanuserdata', JSON.stringify(data));
+                    console.log('User data updated in localStorage:', data);
+                } else {
+                    console.log('No data available at userRef.');
+                }
+            }, {
+                onlyOnce: false 
+            });
+        }
+
+        // Call the function to fetch and store data from the start
+        fetchAndStoreUserData();
+
+
+
+
+
+        let lastUserData = localStorage.getItem('scanuserdata');
+
+        function displayUserData() {
+            const userData = JSON.parse(localStorage.getItem('scanuserdata'));
+
+            if (userData) {
+                document.getElementById('scanuserName').textContent = userData.userfullname || '-';
+                document.getElementById('scanuseridNumber').textContent = userData.useridnumber || '-';
+                document.getElementById('scanusergroupName').textContent = userData.groupname || '-';
+                document.getElementById('scanuserphoneNumber').textContent = userData.userphonenumber || '-';
+                document.getElementById('scanuseraddress').textContent = userData.useraddress || '-';
+                displayProfilePicture(userData.imageUrl);
+            } else {
+                console.error('No user data found in localStorage');
+            }
+        }
+
+
+
+
+        // Function to get the image URL from local storage and display the image
+        const displayProfilePicture = async (profileUrl) => {
+            try {
+                if (!profileUrl) return;
+
+                // Get a reference to the image in Firebase Storage
+                const imageRef = storageRef(storage, profileUrl);
+
+                // Get the download URL
+                const downloadUrl = await getDownloadURL(imageRef);
+
+                // Get the existing image element and set its source to the download URL
+                const imgElement = document.getElementById('profilePicture3');
+                imgElement.src = downloadUrl;
+            } catch (error) {
+                console.error("Error fetching and displaying profile picture:", error);
+            }
+        };
+
+        // Call the function to display user data initially
+        displayUserData();
+
+        // Check for changes in localStorage every second
+        setInterval(function() {
+            const currentUserData = localStorage.getItem('scanuserdata');
+            if (currentUserData !== lastUserData) {
+                lastUserData = currentUserData;
+                displayUserData();
+                location.reload();
+            }
+        }, 1000); 
+
+        
+
+
+
+        // Display scan list funtion -------------------------------------------------------
+        const displayDiv = document.getElementById('displayscanlisthistory');
+
+        // Create table and header
+        const table = document.createElement('table');
+        table.id = 'tableas';
+        const thead = document.createElement('thead');
+        const tbody = document.createElement('tbody');
+
+        const headerRow = document.createElement('tr');
+        const headers = ['Date Time', 'In/Out', 'User Name', 'Group Name', 'User UID'];
+        headers.forEach(headerText => {
+            const th = document.createElement('th');
+            th.textContent = headerText;
+            headerRow.appendChild(th);
+        });
+
+        thead.appendChild(headerRow);
+        table.appendChild(thead);
+        table.appendChild(tbody);
+        displayDiv.appendChild(table);
+
+        // Function to format date
+        const formatDateTime = (datetime) => {
+            const date = new Date(datetime);
+            const options = {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: true
+            };
+            return date.toLocaleString('en-GB', options).replace(',', ' -');
+        };
+
+
+        // Fetch and display data from useraccesslist
+        onValue(accessRef2, (snapshot) => {
+            tbody.innerHTML = ""; // Clear previous content
+            const data = snapshot.val();
+            if (data) {
+                Object.keys(data).forEach(key => {
+                    const item = data[key];
+                    const row = document.createElement('tr');
+
+
+                    const datetimeCell = document.createElement('td');
+                    datetimeCell.textContent = formatDateTime(item.datetime) || '';
+                    row.appendChild(datetimeCell);
+
+
+                    const inoutCell = document.createElement('td');
+                    inoutCell.textContent = item.inout || '';
+                    row.appendChild(inoutCell);
+
+                    const userNameCell = document.createElement('td');
+                    userNameCell.textContent = item.username || '';
+                    row.appendChild(userNameCell);
+
+                    const groupNameCell = document.createElement('td');
+                    groupNameCell.textContent = item.usergroupname || '';
+                    row.appendChild(groupNameCell);
+
+                    const userUidCell = document.createElement('td');
+                    userUidCell.textContent = item.useruid || '';
+                    row.appendChild(userUidCell);
+
+                    tbody.appendChild(row);
+                });
+            } else {
+                const noDataRow = document.createElement('tr');
+                const noDataCell = document.createElement('td');
+                noDataCell.textContent = "No scan history.";
+                noDataCell.colSpan = headers.length;
+                noDataRow.appendChild(noDataCell);
+                tbody.appendChild(noDataRow);
+            }
+        });
+
+
+
+
+
+
+
+
+
+        // Display Setting Access Data--------------------------------------------
+        onValue(accessRef, (snapshot) => {
+            const data = snapshot.val();
+            if (data) {
+                document.getElementById('aaddressInp').value = data.address || '';
+                document.getElementById('aphonenumberInp').value = data.phoneNumber || '';
+                document.getElementById('anameInp').value = data.accessname || '';
+            }
+        });
+        
+
+
+
+        // Function to display company name
+        const displayCompanyName = async () => {
+            try {
+                const snapshot = await get(companyRef);
+                if (snapshot.exists()) {
+                    const companyName = snapshot.val().companyname;
+                    document.getElementById('companyName').textContent = companyName;
+                } else {
+                    console.error("No data available");
+                }
+            } catch (error) {
+                console.error("Error getting company name:", error);
+            }
+        };
+
+        // Call the function to display the company name
+        displayCompanyName();
+        
+
+
+        // Function to display access detail
+        const displayAccessInfo = async () => {
+            try {
+                const snapshot = await get(accessRef);
+                if (snapshot.exists()) {
+                    const accessData = snapshot.val();
+                    document.getElementById('accessName').textContent = accessData.accessname;
+                    document.getElementById('accessEmail').textContent = accessData.email;
+                    document.getElementById('accessphoneNumber').textContent = accessData.phoneNumber;
+                    document.getElementById('accessAddress').textContent = accessData.address;
+                } else {
+                    console.error("No data available");
+                }
+            } catch (error) {
+                console.error("Error getting access info:", error);
+            }
+        };
+
+        // Call the function to display the access name and email
+        displayAccessInfo();
+    
+
+        const saveBtn = document.querySelector('.saveBtn');
+            saveBtn.addEventListener('click', async () => {
+                const newName = document.getElementById('anameInp').value;
+                const newPhoneNumber = document.getElementById('aphonenumberInp').value;
+                const newAddress = document.getElementById('aaddressInp').value;
+
+                // Image upload logic
+                const imageUpload = document.getElementById('imageUpload');
+                const file = imageUpload.files[0];
+                let imageUrl = null;
+
+                if (file) {
+                    try {
+                        const fileRef = storageRef(storage, `images/${accessUid}/accesspicture.png`);
+                        await uploadBytes(fileRef, file);
+                        imageUrl = await getDownloadURL(fileRef);
+                    } catch (error) {
+                        console.error('Error uploading image:', error);
+                        alert('Error uploading image. Please try again.');
+                        return; // Exit the function if image upload fails
+                    }
+                }
+
+                // Update user information in Firebase
+                const updateData = {
+                    accessname: newName,
+                    phoneNumber: newPhoneNumber,
+                    address: newAddress
+                };
+
+                if (imageUrl) {
+                    updateData.imageUrl = imageUrl;
+                }
+
+                update(accessRef, updateData).then(() => {
+                    console.log('User information updated successfully');
+                    alert('Data saved successfully.');
+                    location.reload();
+                }).catch((error) => {
+                    console.error('Error updating user information:', error);
+                    alert('Error saving data. Please try again.');
+                });
+            });
+
+
+            // Function to display the profile picture
+            async function displayAccessPicture() {
+                try {
+                    const snapshot = await get(accessRef);
+                    if (snapshot.exists()) {
+                        const data = snapshot.val();
+                        if (data.imageUrl) {
+                            const displayContainer = document.getElementById('displayaccesspictureContainer');
+                            displayContainer.innerHTML = `<img id="profilePicture2" src="${data.imageUrl}" alt="Profile Picture" />`;
+                        }
+                    } else {
+                        console.log('No data available');
+                    }
+                } catch (error) {
+                    console.error('Error retrieving image:', error);
+                }
+            }
+
+            // Call the function to display the profile picture on page load
+            displayAccessPicture();
+
+
+
+            // in out funtion -------------------------------------------------------
+
+
+
+            // Reference to the delete and clear buttons
+            const deleteButton = document.getElementById('deleteaccBtn');
+            const clearButton = document.getElementById('clearhistoryBtn');
+
+            // Delete user data and authentication
+            deleteButton.addEventListener('click', () => {
+                const confirmation = confirm("Are you sure you want to delete your account? This action cannot be undone.");
+                if (confirmation) {
+                    remove(accessRef)
+                        .then(() => {
+                            console.log('User data deleted from database');
+                            // Delete the user authentication
+                            const user = auth.currentUser;
+                            if (user) {
+                                deleteUser(user)
+                                    .then(() => {
+                                        localStorage.removeItem('access-info');
+                                        localStorage.removeItem('access-creds');
+                                        localStorage.removeItem('AccesslastClickedButton');
+                                        localStorage.removeItem('groupuid');
+                                        localStorage.removeItem('useruid');
+                                        localStorage.removeItem('scanuserdata');
+                                        console.log('User deleted from authentication');
+                                        location.reload();
+                                    })
+                                    .catch((error) => {
+                                        console.error('Error deleting user from authentication', error);
+                                    });
+                            } else {
+                                console.error('No user is currently signed in');
+                            }
+                        })
+                        .catch((error) => {
+                            console.error('Error deleting user data from database', error);
+                        });
+                }
+            });
+
+            // Clear history
+            clearButton.addEventListener('click', () => {
+                const confirmation = confirm('Clear All History?');
+                if (confirmation) {
+                    remove(accessRef2)
+                        .then(() => {
+                            console.log('History Cleared');
+                            location.reload();
+                        })
+                        .catch((error) => {
+                            console.error('Error deleting access history', error);
+                        });
+                } else {
+                    console.log('User history deletion canceled');
+                }
+            });
+
+
+        });
+</script>
+</html>

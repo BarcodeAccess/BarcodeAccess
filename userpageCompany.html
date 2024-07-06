@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Page</title>
+    <link rel="stylesheet" href="styles4.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode/dist/JsBarcode.all.min.js"></script>
+</head>
+<body>
+    <!--Header-->
+    <header id="main-header">
+        <button class="backBtn" onclick="goBack()" title="Back"><i class="fa-solid fa-chevron-left"></i></button>
+        <button id="homeBtn" onclick="goHome()" title="Home Page"><i class="fa-solid fa-house"></i></button>
+        <button class="fowardBtn" onclick="goNext()" title="Foward"><i class="fa-solid fa-chevron-right"></i></button>
+    </header>
+
+    <div id="parentpagetitle">
+        <div id="pagetitle">
+            <h2>User Data</h1>
+        </div>
+    </div>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+        function goHome() {
+            window.location.href = 'index.html';
+        }
+        function goNext() {
+            window.history.forward();
+        }
+    </script>
+
+<div id="parentnavbar">
+    <div id="navbar">
+        <button class="navbarbutton" data-specific-id="accesslistBtn" onclick="showAccessList()" title="Scan History">
+            <i class="fa-solid fa-barcode"></i>
+        </button>
+        <button class="navbarbutton" data-specific-id="userdetailBtn" onclick="showUserDetail()"  title="User Details">
+            <i class="fa-solid fa-user"></i>
+        </button>
+        <button class="navbarbutton" data-specific-id="idcardBtn" onclick="showidcard()" title="Id Card">
+            <i class="fas fa-id-card"></i>
+        </button>
+        <button class="navbarbutton" data-specific-id="settinguserBtn" onclick="showSettingUser()" title="Setting">
+            <i class="fas fa-cog"></i>
+        </button>
+    </div>    
+</div>
+<div id="headerspace"></div>
+
+    <div id="parentuserdetailContainer">
+        <div id="userdetailContainer">
+            <h2></h2>
+            <div id="displayprofilepictureContainer"></div>
+            <div id="displayuserdetailContainer">
+                <div id="table1container">
+                    <table border="1">
+                        <tr>
+                            <th>Name</th>
+                            <td><span id="userName"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Id</th>
+                            <td><span id="idNumber"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Group</th>
+                            <td><span id="groupName"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Phone Number</th>
+                            <td><span id="phoneNumber"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Address</th>
+                            <td><span id="address"></span></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="parentidcardContainer">
+        <div id="idcardContainer">
+            <h2>Id Card</h2>
+            <div id="parentparentparentidcard">
+                <div id="parentparentidcard">
+                    <div id="parentidcardfront"class="parentidcard">
+                        <div id="idcardfront" class="idcard">
+                            <div id="displaylogoContainer2">
+                                <img id="logoimage" alt="Company Logo">
+                            </div>
+                            <div id="leftidcard">
+                                <h2 id="idcardtitle">ID CARD</h2>
+                            </div>
+                            <div id="barcodecontainer">
+                                <svg id="barcodeimage"></svg>
+                            </div>
+                            <div id="userdetailcontainer">
+                                <p id="Nametitle">Full Name</p>
+                            </div>
+                            <div id="userdetailcontainer2">
+                                <p id="Groupname">Group Name</p>
+                            </div>
+                            <div id="userdetailcontainer3">
+                            </div>
+                        </div>
+                    </div>
+                    <div id="parentidcardfront" class="parentidcard" >
+                        <div id="idcardback" class="idcard" >
+                            <div id="backcardtitlecontainer">
+                                <p id="backcardtitle">Title</p>
+                                <p id="backcardtitle2">Your text</p>
+                                <p id="backcardtitle3">Address</p>
+                                <p id="backcardtitle4">Phone Number</p>
+                                <p id="backcardtitle5">Email</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="parentusersettingContainer">
+        <div id="usersettingContainer">
+            <div id="setting">
+                <h2>Setting</h2>
+                <h4>Upload Profile Picture <i class="fa-solid fa-circle-info" title="1:1 Image Crop-frame is recommended"></i></h4>
+                <div id="companylogo">
+                    <input type="file" id="imageUpload" accept="image/*" onchange="previewImage(event)" />
+                </div>
+                <div id="previewImage"></div>
+                <hr>
+                <div id="userdetail">
+                    <label for="unameInp">Name</label>
+                    <input type="text" id="unameInp" placeholder="Name">
+                    <br>
+                    <label for="uphonenumberInp">Phone Number</label>
+                    <input type="text" id="uphonenumberInp" placeholder="Phone Number">
+                    <br>
+                    <label for="uaddressInp">Address</label>
+                    <input type="text" id="uaddressInp" placeholder="Address">
+                    <br>
+                    <div class="saveButton">
+                        <button type="submit" class="saveBtn">Save</button>
+                    </div>
+                    <div id="deleteacc">
+                        <button id="deleteaccBtn" title="This will delete all you data">Delete Account</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="parentaccesslistContainer">
+        <div id="accesslistContainer">
+            <h2>Scan History</h2>
+            <div id="clearhistory">
+                <button id="clearhistoryBtn" title="Clear All History?">Clear All History</button>
+            </div>
+            <div id="displayscanlisthistory"></div>
+        </div>
+    </div>
+</body>
+
+<script>
+    function previewImage(event) {
+      const file = event.target.files[0];
+      
+      if (file) {
+        const reader = new FileReader();
+        
+        reader.onload = function(e) {
+          const img = document.createElement('img');
+          img.src = e.target.result;
+          
+          const previewDiv = document.getElementById('previewImage');
+          previewDiv.innerHTML = '';
+          previewDiv.appendChild(img);
+        }
+        
+        reader.readAsDataURL(file);
+      }
+    }
+    </script>
+
+<script>
+    // Function to handle button click and update localStorage
+    function handleButtonClick(buttonId) {
+        // Remove styles from previously clicked button, if any
+        var lastClickedButton = localStorage.getItem("UserDatalastClickedButton");
+        if (lastClickedButton) {
+            var lastButton = document.querySelector(`[data-specific-id="${lastClickedButton}"]`);
+            if (lastButton) {
+                lastButton.style.background = "";
+                lastButton.style.border = "";
+                lastButton.style.transform = "";
+            }
+        }
+    
+        // Set new localStorage value for UserDatalastClickedButton
+        localStorage.setItem("UserDatalastClickedButton", buttonId);
+    
+        // Update style for the clicked button
+        var button = document.querySelector(`[data-specific-id="${buttonId}"]`);
+        if (button) {
+            button.style.background = "linear-gradient(165deg, #d9d9d9, #ffffff, #d9d9d9)";
+            button.style.border = "2px solid #bbbbbb";
+            button.style.transform = "translateY(10px)";
+        }
+    }
+    
+    // Function to continuously monitor localStorage and update button styles
+    function checkLocalStorage() {
+        if (typeof(Storage) !== "undefined") {
+            var lastClickedButton = localStorage.getItem("UserDatalastClickedButton");
+    
+            // Remove styles from previously clicked button, if any
+            var buttons = document.querySelectorAll('[data-specific-id]');
+            buttons.forEach(function(btn) {
+                if (btn.dataset.specificId !== lastClickedButton) {
+                    btn.style.background = "";
+                    btn.style.border = "";
+                    btn.style.transform = "";
+                }
+            });
+    
+            // Set background color and border for the currently stored button
+            if (lastClickedButton) {
+                var button = document.querySelector(`[data-specific-id="${lastClickedButton}"]`);
+                if (button) {
+                    button.style.background = "linear-gradient(165deg, #d9d9d9, #fcfcfc, #d9d9d9)";
+                    button.style.border = "2px solid #bbbbbb";
+                    button.style.transform = "translateY(10px)";
+                }
+            }
+        } else {
+            console.log("LocalStorage is not supported in this browser.");
+        }
+    }
+    
+    // Call the checkLocalStorage function initially
+    checkLocalStorage();
+    
+    setInterval(checkLocalStorage, 10);
+</script>
+
+<script>
+    function checkCompanyCreds() {
+        if (!localStorage.getItem('company-creds')) {
+            alert('Please login again.');
+            window.location.href = 'loginCompany.html';
+        }
+    }
+    // Call the function when the page loads
+    window.onload = checkCompanyCreds;
+</script>
+
+
+<script>
+    const userlistUid = JSON.parse(localStorage.getItem('userlist-click')).idnumber;
+    const grouplistUid = JSON.parse(localStorage.getItem('grouplist-click')).grouplistuid;
+
+    const barcodeValue = `${grouplistUid}-${userlistUid}`;
+
+    JsBarcode("#barcodeimage", barcodeValue, {
+      format: "CODE128",
+      displayValue: true,
+      fontSize: 17,
+      height: 30
+    });
+</script>
+
+<script>
+    // Functions to show/hide containers
+    function showUserDetail() {
+        document.getElementById('userdetailContainer').style.display = 'block';
+        document.getElementById('usersettingContainer').style.display = 'none';
+        document.getElementById('idcardContainer').style.display = 'none';
+        document.getElementById('accesslistContainer').style.display = 'none';
+    }
+    function showSettingUser() {
+        document.getElementById('usersettingContainer').style.display = 'block';
+        document.getElementById('idcardContainer').style.display = 'none';
+        document.getElementById('userdetailContainer').style.display = 'none';
+        document.getElementById('accesslistContainer').style.display = 'none';
+    }
+    function showidcard() {
+        document.getElementById('idcardContainer').style.display = 'block';
+        document.getElementById('usersettingContainer').style.display = 'none';
+        document.getElementById('userdetailContainer').style.display = 'none';
+        document.getElementById('accesslistContainer').style.display = 'none';
+    }
+    function showAccessList() {
+        document.getElementById('accesslistContainer').style.display = 'block';
+        document.getElementById('idcardContainer').style.display = 'none';
+        document.getElementById('usersettingContainer').style.display = 'none';
+        document.getElementById('userdetailContainer').style.display = 'none';
+    }
+</script>
+
+<script>
+    // Function to store a specific ID in localStorage
+    function storeButtonClick(event) {
+        const specificId = event.currentTarget.getAttribute('data-specific-id');
+        localStorage.setItem('UserDatalastClickedButton', specificId);
+        console.log(`Stored ${specificId} in localStorage`);
+    }
+
+    // Function to add event listeners to buttons
+    function addClickListeners() {
+        const buttons = document.querySelectorAll('button[data-specific-id]');
+        buttons.forEach(button => {
+            button.addEventListener('click', storeButtonClick);
+        });
+    }
+
+    // Function to click the button that matches the specific ID in localStorage
+    function clickLastButton() {
+        const UserDatalastClickedButtonId = localStorage.getItem('UserDatalastClickedButton');
+        if (UserDatalastClickedButtonId) {
+            const UserDatalastClickedButton = document.querySelector(`button[data-specific-id="${UserDatalastClickedButtonId}"]`);
+            if (UserDatalastClickedButton) {
+                UserDatalastClickedButton.click();
+                console.log(`Clicked button with data-specific-id ${UserDatalastClickedButtonId} from localStorage`);
+            }
+        }
+    }
+
+    // Add event listeners when the DOM content is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+        addClickListeners();
+        clickLastButton();
+    });
+</script>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getDatabase, ref, get, remove, onValue, update } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+    import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
+
+    document.addEventListener('DOMContentLoaded', () => {
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyC3G_6BwwJAmKhUrF0pBqRaxBEQj67vTS8",
+            authDomain: "barcode-access.firebaseapp.com",
+            databaseURL: "https://barcode-access-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "barcode-access",
+            storageBucket: "barcode-access.appspot.com",
+            messagingSenderId: "97112837718",
+            appId: "1:97112837718:web:206f4d4d550153afcdb5f7",
+            measurementId: "G-D8RQZ58Y4G"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        const storage = getStorage(app);
+
+        // Get UIDs from local storage
+        const companyUid = JSON.parse(localStorage.getItem('company-creds')).uid;
+        const grouplistUid = JSON.parse(localStorage.getItem('grouplist-click')).grouplistuid;
+        const userlistUid = JSON.parse(localStorage.getItem('userlist-click')).idnumber;
+
+        // Reference to the company in the database
+        const companyRef = ref(db, `Companies/${companyUid}/grouplist/${grouplistUid}/userlist/${userlistUid}`);
+        const userRef = ref(db, `Companies/${companyUid}/grouplist/${grouplistUid}/userlist/${userlistUid}/accesslist`);
+        const companyRef2 = ref(db, `Companies/${companyUid}`);
+        const companyRef3 = ref(db, `Companies/${companyUid}/idcard`);
+
+
+        const displayDiv = document.getElementById('displayscanlisthistory');
+
+        // Create table and header
+        const table = document.createElement('table');
+        table.id = 'tableas';
+        const thead = document.createElement('thead');
+        const tbody = document.createElement('tbody');
+
+        const headerRow = document.createElement('tr');
+        const headers = ['Access Name', 'In/Out', 'Date Time', 'User Name', 'Group Name'];
+        headers.forEach(headerText => {
+            const th = document.createElement('th');
+            th.textContent = headerText;
+            headerRow.appendChild(th);
+        });
+
+        thead.appendChild(headerRow);
+        table.appendChild(thead);
+        table.appendChild(tbody);
+        displayDiv.appendChild(table);
+
+        // Function to format date
+        const formatDateTime = (datetime) => {
+            const date = new Date(datetime);
+            const options = {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: true
+            };
+            return date.toLocaleString('en-GB', options).replace(',', ' -');
+        };
+
+        
+
+
+        // Fetch and display data from useraccesslist
+        onValue(userRef, (snapshot) => {
+            tbody.innerHTML = ""; // Clear previous content
+            const data = snapshot.val();
+            if (data) {
+                Object.keys(data).forEach(key => {
+                    const item = data[key];
+                    const row = document.createElement('tr');
+
+                    const accessNameCell = document.createElement('td');
+                    accessNameCell.textContent = item.accessname || '';
+                    row.appendChild(accessNameCell);
+
+                    
+                    const inoutCell = document.createElement('td');
+                    inoutCell.textContent = item.inout || '';
+                    row.appendChild(inoutCell);
+
+
+                    const datetimeCell = document.createElement('td');
+                    datetimeCell.textContent = formatDateTime(item.datetime) || '';
+                    row.appendChild(datetimeCell);
+
+
+                    const userNameCell = document.createElement('td');
+                    userNameCell.textContent = item.username || '';
+                    row.appendChild(userNameCell);
+
+                    const groupNameCell = document.createElement('td');
+                    groupNameCell.textContent = item.usergroupname || '';
+                    row.appendChild(groupNameCell);
+
+
+                    tbody.appendChild(row);
+                });
+            } else {
+                const noDataRow = document.createElement('tr');
+                const noDataCell = document.createElement('td');
+                noDataCell.textContent = "No Access History";
+                noDataCell.colSpan = headers.length;
+                noDataRow.appendChild(noDataCell);
+                tbody.appendChild(noDataRow);
+            }
+        });
+        
+
+        //company logo
+        onValue(companyRef2, (snapshot) => {
+            const userData = snapshot.val();
+            if (userData && userData.imageurl) {
+                const imageurl = userData.imageurl;
+
+                // Update the src attribute of the image
+                const logoImage = document.getElementById('logoimage');
+                logoImage.src = imageurl;
+            } else {
+                // Handle case where imageUrl is not found or empty
+                console.error('Image URL not found in database');
+            }
+        }, (error) => {
+            console.error('Error fetching data:', error);
+        });
+
+        //id card
+        // Function to display data including the saved color
+        onValue(companyRef3, (snapshot) => {
+            const data = snapshot.val();
+            if (data) {
+                document.getElementById('backcardtitle').innerText = data.backcardtitle || '';
+                document.getElementById('backcardtitle2').innerText = data.backcardtitle2 || '';
+                document.getElementById('idcardtitle').innerText = data.idcardtitle || '';
+
+                // Check if the color data exists and apply it
+                if (data.color) {
+                    document.getElementById('userdetailcontainer').style.backgroundColor = data.color;
+                    const parentIdCards = document.querySelectorAll('.parentidcard');
+                    parentIdCards.forEach(card => {
+                        card.style.borderLeftColor = data.color;
+                        card.style.borderRightColor = data.color;
+                    });
+                }
+                if (data.color2) {
+                leftIdCard.style.backgroundColor = data.color2;
+                }
+            }
+        });
+        const leftIdCard = document.getElementById('leftidcard');
+        onValue(companyRef2, (snapshot) => {
+            const data = snapshot.val();
+            if (data) {
+                document.getElementById('backcardtitle3').innerText = data.address || '';
+                document.getElementById('backcardtitle4').innerText = data.phoneNumber || '';
+                document.getElementById('backcardtitle5').innerText = data.email || '';
+            }
+        });
+
+        
+
+
+        // Fetch and display the data
+        onValue(companyRef, (snapshot) => {
+            const data = snapshot.val();
+            if (data) {
+                document.getElementById('userName').innerText = data.userfullname || '-';
+                document.getElementById('Nametitle').innerText = data.userfullname || '-';
+                document.getElementById('idNumber').innerText = data.useridnumber || '-';
+                document.getElementById('groupName').innerText = data.groupname || '-';
+                document.getElementById('Groupname').innerText = data.groupname || '-';
+                document.getElementById('address').innerText = data.useraddress || '-';
+                document.getElementById('phoneNumber').innerText = data.userphonenumber || '-';
+
+                document.getElementById('uaddressInp').value = data.useraddress || '';
+                document.getElementById('uphonenumberInp').value = data.userphonenumber || '';
+                document.getElementById('unameInp').value = data.userfullname || '';
+            } else {
+                console.log('-');
+                document.getElementById('userName').innerText = '-';
+                document.getElementById('idNumber').innerText = '-';
+                document.getElementById('groupName').innerText = '-';
+                document.getElementById('address').innerText = '-';
+                document.getElementById('phoneNumber').innerText = '-';
+
+                document.getElementById('uaddressInp').value = '';
+                document.getElementById('uphonenumberInp').value = '';
+                document.getElementById('unameInp').value = '';
+            }
+        });
+
+            // Save button click event listener
+            const saveBtn = document.querySelector('.saveBtn');
+            saveBtn.addEventListener('click', async () => {
+                // Get user input values
+                const newName = document.getElementById('unameInp').value;
+                const newPhoneNumber = document.getElementById('uphonenumberInp').value;
+                const newAddress = document.getElementById('uaddressInp').value;
+                const imageUpload = document.getElementById('imageUpload');
+                const file = imageUpload.files[0];
+
+                try {
+                    // Update user information in Firebase
+                    await update(companyRef, {
+                        userfullname: newName,
+                        userphonenumber: newPhoneNumber,
+                        useraddress: newAddress
+                    });
+
+                    // Handle image upload if a file is selected
+                    if (file) {
+                        const fileRef = storageRef(storage, `images/${userlistUid}/profilepicture.png`);
+                        await uploadBytes(fileRef, file);
+                        const downloadURL = await getDownloadURL(fileRef);
+                        await update(companyRef, { imageUrl: downloadURL });
+                        alert('Image uploaded successfully!');
+                    }
+
+                    console.log('User information updated successfully');
+                    alert('Data saved successfully.');
+                    location.reload();
+                    localStorage.setItem('UserDatalastClickedButton', 'userdetailBtn');
+                } catch (error) {
+                    console.error('Error updating user information:', error);
+                    alert('Error saving data. Please try again.');
+                }
+            });
+
+
+            // Function to display the profile picture
+            async function displayProfilePicture() {
+                try {
+                    const snapshot = await get(companyRef);
+                    if (snapshot.exists()) {
+                        const data = snapshot.val();
+                        if (data.imageUrl) {
+                            const displayContainer = document.getElementById('displayprofilepictureContainer');
+                            displayContainer.innerHTML = `<img id="profilePicture2" src="${data.imageUrl}" alt="Profile Picture" />`;
+                        }
+                    } else {
+                        console.log('No data available');
+                    }
+                } catch (error) {
+                    console.error('Error retrieving image:', error);
+                }
+            }
+
+            // Call the function to display the profile picture on page load
+            displayProfilePicture();
+
+            // Function to display the profile picture
+            async function displayProfilePicture2() {
+                try {
+                    const snapshot = await get(companyRef);
+                    if (snapshot.exists()) {
+                        const data = snapshot.val();
+                        if (data.imageUrl) {
+                            const displayContainer = document.getElementById('userdetailcontainer3');
+                            displayContainer.innerHTML = `<img id="profilePicture3" src="${data.imageUrl}" alt="Profile Picture" />`;
+                        }
+                    } else {
+                        console.log('No data available');
+                    }
+                } catch (error) {
+                    console.error('Error retrieving image:', error);
+                }
+            }
+
+            // Call the function to display the profile picture on page load
+            displayProfilePicture2();
+
+
+
+            // Reference to the delete button
+            const deleteButton = document.getElementById('deleteaccBtn');
+            const clearButton = document.getElementById('clearhistoryBtn');
+
+            // Delete user data from the database only after confirmation
+            deleteButton.addEventListener('click', () => {
+                const confirmation = confirm('Delete this user?');
+
+                if (confirmation) {
+                    remove(companyRef)
+                        .then(() => {
+                            console.log('User data deleted from database');
+                            localStorage.removeItem('UserDatalastClickedButton');
+                            localStorage.removeItem('userlist-click');
+                            window.location.href = 'listpageCompany.html';
+                        })
+                        .catch((error) => {
+                            console.error('Error deleting user data from database', error);
+                        });
+                } else {
+                    console.log('User data deletion canceled');
+                }
+            });
+            clearButton.addEventListener('click', () => {
+                const confirmation = confirm('Clear All History?');
+
+                if (confirmation) {
+                    remove(userRef)
+                        .then(() => {
+                            console.log('History Cleared');
+                            location.reload();
+                        })
+                        .catch((error) => {
+                            console.error('Error deleting user history', error);
+                        });
+                } else {
+                    console.log('User history deletion canceled');
+                }
+            });
+
+        });
+        
+
+
+
+
+
+        
+</script>
+</html>

@@ -1,0 +1,155 @@
+
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f2f5;
+}
+
+* {
+    font-family: Arial, sans-serif;
+}
+
+#main-header {
+    background: linear-gradient(90deg, #fcb69f, #fff0db, #fcb69f);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+}
+
+#main-header button {
+    border: none;
+    transition: 0.3s ease;
+    color: #000000;
+}
+
+.fowardBtn {
+    background: none;
+    padding: 15px;
+    font-size: 20px;
+}
+.fowardBtn:hover {
+    transform: translateX(5px);
+}
+.backBtn {
+    background: none;
+    padding: 15px;
+    font-size: 20px;
+}
+.backBtn:hover {
+    transform: translateX(-5px);
+}
+
+#homeBtn {
+    background:  linear-gradient(165deg, #ffb9a2, #fff5e7, #ffb9a2);
+    border-radius: 15px 5px;
+    height: 40px;
+    width: 65px;
+    font-size: 25px;
+    margin-top: 22px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+#homeBtn:hover {
+    transform: translateY(3px);
+}
+
+#headerspace {
+    margin-top: 130px;
+}
+
+
+
+.form-container {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 420px;
+}
+
+h2 {
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: #674f49;
+}
+
+.label-input-div {
+    margin-bottom: 1.5rem;
+}
+
+.label-input-div label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #555;
+}
+
+.label-input-div input {
+    width: calc(100%);
+    padding: 0.5rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+
+.show-hide-checkbox {
+    display: flex;
+    align-items: center;
+    margin-top: -21px;
+    margin-bottom: 15px;
+    font-size: 13px;
+}
+
+.show-hide-checkbox input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+
+.register-button {
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #84665c;
+    color: #ffffff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.register-button:hover {
+    background-color: #695048;
+}
+.login-button {
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #84665c;
+    color: #ffffff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-button:hover {
+    background-color: #695048;
+}
+
+#forgotpasslabel {
+    font-size: 12px;
+    margin-top: -15px;
+    margin-bottom: 5px;
+}
