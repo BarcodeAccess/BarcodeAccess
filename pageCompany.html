@@ -15,44 +15,48 @@
         <button id="homeBtn" onclick="goHome()" title="Home Page"><i class="fa-solid fa-house"></i></button>
         <button class="fowardBtn" onclick="goNext()" title="Foward"><i class="fa-solid fa-chevron-right"></i></button>
     </header>
-    <div id="parentpagetitle">
-        <div id="pagetitle">
-            <h2>Admin Portal</h1>
+
+    <div class="maincontainer">
+            <div id="parentpagetitle">
+            <div id="pagetitle">
+                <h2>Admin Portal</h1>
+            </div>
+        </div>
+
+
+        <script>
+            function goBack() {
+                window.history.back();
+            }
+            function goHome() {
+                window.location.href = 'index.html';
+            }
+            function goNext() {
+                window.history.forward();
+            }
+        </script>
+    <div id="parentnavbar">
+        <div id="navbar">
+            <button class="navbarbutton" data-specific-id="accesslistBtn" onclick="showAccessList()" title="Access Center">
+                <i class="fa-solid fa-barcode"></i>
+            </button>
+            <button class="navbarbutton" data-specific-id="grouplistBtn" onclick="showGroupList()" title="Group List">
+                <i class="fas fa-users"></i>
+            </button>
+            <button class="navbarbutton" data-specific-id="companydetailBtn" onclick="showCompanyDetails()" title="Company Details">
+                <i class="fa-solid fa-user"></i>
+            </button>
+            <button class="navbarbutton" data-specific-id="customidcardBtn" onclick="showCustomIdCard()" title="Custom Id Card">
+                <i class="fas fa-id-card"></i>
+            </button>
+            <button class="navbarbutton" data-specific-id="companysettingBtn" onclick="showSetting()" title="Setting">
+                <i class="fas fa-cog"></i>
+            </button>
         </div>
     </div>
-
-
-    <script>
-        function goBack() {
-            window.history.back();
-        }
-        function goHome() {
-            window.location.href = 'index.html';
-        }
-        function goNext() {
-            window.history.forward();
-        }
-    </script>
-<div id="parentnavbar">
-    <div id="navbar">
-        <button class="navbarbutton" data-specific-id="accesslistBtn" onclick="showAccessList()" title="Access Center">
-            <i class="fa-solid fa-barcode"></i>
-        </button>
-        <button class="navbarbutton" data-specific-id="grouplistBtn" onclick="showGroupList()" title="Group List">
-            <i class="fas fa-users"></i>
-        </button>
-        <button class="navbarbutton" data-specific-id="companydetailBtn" onclick="showCompanyDetails()" title="Company Details">
-            <i class="fa-solid fa-user"></i>
-        </button>
-        <button class="navbarbutton" data-specific-id="customidcardBtn" onclick="showCustomIdCard()" title="Custom Id Card">
-            <i class="fas fa-id-card"></i>
-        </button>
-        <button class="navbarbutton" data-specific-id="companysettingBtn" onclick="showSetting()" title="Setting">
-            <i class="fas fa-cog"></i>
-        </button>
+    <div id="headerspace"></div>
     </div>
-</div>
-<div id="headerspace"></div>
+    
 
 
     <div id="parentcompanydetailContainer">
