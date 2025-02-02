@@ -1,241 +1,141 @@
 * {
-  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
+
 body {
   background: #f0f2f5;
+  color: #6e4f45;
 }
 
-.parentmaincontainer {
-  justify-content: center;
-  display: flex;
-}
+/* Header */
 #main-header {
-  background: linear-gradient(135deg, #fcb69f, #ffecd2);
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 20px;
-  width: 100%;
-  z-index: 1000;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  padding: 10px 0;
+  background: linear-gradient(135deg, #bf8d7c, #fff0db);
+  color: #6e4f45;
+  padding: 20px 0;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#main-header h1 {
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+
+/* Main Container */
+.parentmaincontainer {
   display: flex;
-  justify-content: end;
+  justify-content: center;
   align-items: center;
-}
-
-#headerspace {
-  margin-top: 5px;
-}
-
-#main-header button {
-  margin: 15px;
-  background: none;
-  border: none;
-}
-#main-header button:hover {
-  transform: scale(1.1);
-  color: #4f3931;
+  min-height: 80vh;
+  padding: 20px;
 }
 
 #maincontainer {
   display: flex;
-  margin-top: 15vh;
-  justify-content: center;
-  width: 95%;
-  border-left-width: 5px;
-  border-left-color: #6e4f45;
-  border-left-style: solid;
-  border-right-width: 5px;
-  border-right-color: #6e4f45;
-  border-right-style: solid;
-  border-top: none;
-  border-bottom: none;
+  flex-direction: column;
+  align-items: center;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  max-width: 1000px;
+  width: 100%;
 }
 
+/* Register Button Section */
 #RegisterBtnContainer {
-  background-color: #ffffff;
-  width: 65%;
-  padding: 20px;
-  border-top-width: 5px;
-  border-top-color: #6e4f45;
-  border-top-style: solid;
-  border-bottom-width: 5px;
-  border-bottom-color: #6e4f45;
-  border-bottom-style: solid;
-  border-left: none;
-  border-right: none;
-}
-#RegisterBtnContainer h1 {
-  font-size: 60px;
-  font-style: italic;
-  margin-top: 140px;
+  text-align: center;
+  padding: 40px;
+  background: linear-gradient(135deg, #fff0db, #bf8d7c);
   color: #6e4f45;
-}
-#RegisterBtnContainer button {
-  border-radius: 10px;
-  background: linear-gradient(168deg, #bf8d7c, #fff0db, #bf8d7c);
-  border: none;
-  font-weight: bold;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  padding: 5px 20px;
-  margin-bottom: 30px;
-  font-size: 17px;
-  margin-top: -20px;
-  color: #6e4f45;
-  transition: 0.3s ease;
-}
-#RegisterBtnContainer button:hover {
-  transform: translateY(-5px);
-}
-#loadpageBtnContainer {
-  background: linear-gradient(90deg, #eaeaea, #ffffff);
-  width: 35%;
-  padding: 20px;
-  display: block;
-  height: 500px;
-  justify-content: center;
-  border-top-width: 5px;
-  border-top-color: #6e4f45;
-  border-top-style: solid;
-  border-bottom-width: 5px;
-  border-bottom-color: #6e4f45;
-  border-bottom-style: solid;
-  border-left: none;
-  border-right: none;
-}
-#loadpageBtnContainer button {
-  border-radius: 12px;
-  background: linear-gradient(135deg, #00326b, #7de7e1);
-  border: none;
-  font-weight: bold;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-  padding: 10px 25px;
-  margin-bottom: 60px;
-  height: 100px;
-  width: 90%;
-  font-size: 30px;
-  margin-top: -20px;
-  color: #ffffff;
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
-#loadpageBtnContainer button:hover {
-  transform: translateY(-5px) scale(1.05);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  width: 100%;
 }
 
-.homeButton {
-  padding: 10px;
+#RegisterBtnContainer h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+#RegisterBtnContainer p {
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+#RegisterBtnContainer button {
+  background: #6e4f45;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#RegisterBtnContainer button:hover {
+  background: #4f3931;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Action Buttons Section */
+#loadpageBtnContainer {
+  width: 100%;
+  padding: 40px;
+  background: white;
 }
 
 #centered {
-  margin-top: 140px;
-  text-align: center;
-  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
-/*-----------------------------------------------------------------------------------------*/
 
-@media screen and (max-width: 800px) {
-  #main-header button {
-    margin: 3px;
-  }
-  #headerspace {
-    margin-top: 50px;
-  }
-  .parentmaincontainer {
-    justify-content: center;
-    display: block;
-  }
-  #maincontainer {
-    display: block;
-    margin-top: 0vh;
-    border-left-style: none;
-    border-right-style: none;
+.homeButton.action-btn {
+  background: linear-gradient(135deg, #6e4f45, #bf8d7c);
+  color: white;
+  border: none;
+  padding: 20px 30px;
+  border-radius: 15px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.homeButton.action-btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  #main-header h1 {
+    font-size: 2rem;
   }
 
   #RegisterBtnContainer {
-    background-color: #ffffff;
-    width: 90%;
     padding: 20px;
-    border-left-width: 5px;
-    border-left-color: #6e4f45;
-    border-left-style: solid;
-    border-right-width: 5px;
-    border-right-color: #6e4f45;
-    border-right-style: solid;
-    border-top-width: 3px;
-    border-top-color: #6e4f45;
-    border-top-style: solid;
-    border-bottom: none;
-  }
-  #RegisterBtnContainer h1 {
-    font-size: 40px;
-    font-style: italic;
-    margin-top: 30px;
-    color: #6e4f45;
-  }
-  #RegisterBtnContainer button {
-    border-radius: 10px;
-    background: linear-gradient(168deg, #bf8d7c, #fff0db, #bf8d7c);
-    border: none;
-    font-weight: bold;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    padding: 5px 20px;
-    margin-bottom: 30px;
-    font-size: 15px;
-    margin-top: -20px;
-    color: #6e4f45;
-    transition: 0.3s ease;
-  }
-  #RegisterBtnContainer button:hover {
-    transform: translateY(-5px);
-  }
-  #loadpageBtnContainer {
-    background: linear-gradient(90deg, #d4d4d4, #f5f5f5);
-    width: 90%;
-    padding: 20px;
-    display: block;
-    height: 350px;
-    justify-content: center;
-    border-left-width: 5px;
-    border-left-color: #6e4f45;
-    border-left-style: solid;
-    border-right-width: 5px;
-    border-right-color: #6e4f45;
-    border-right-style: solid;
-    border-top: none;
-    border-bottom-width: 3px;
-    border-bottom-color: #6e4f45;
-    border-bottom-style: solid;
-  }
-  #loadpageBtnContainer button {
-    border-radius: 12px;
-    background: linear-gradient(135deg, #00326b, #7de7e1);
-    border: none;
-    font-weight: bold;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-    padding: 10px 25px;
-    margin-bottom: 60px;
-    height: 100px;
-    width: 90%;
-    font-size: 25px;
-    margin-top: -40px;
-    color: #ffffff;
-    transition: all 0.3s ease;
-    cursor: pointer;
-  }
-  #loadpageBtnContainer button:hover {
-    transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  }
-  .homeButton {
-    padding: 10px;
   }
 
-  #centered {
-    margin-top: 105px;
-    text-align: center;
-    justify-content: center;
+  #RegisterBtnContainer h2 {
+    font-size: 1.5rem;
+  }
+
+  #RegisterBtnContainer p {
+    font-size: 0.9rem;
+  }
+
+  #loadpageBtnContainer {
+    padding: 20px;
+  }
+
+  .homeButton.action-btn {
+    font-size: 1rem;
+    padding: 15px 20px;
   }
 }

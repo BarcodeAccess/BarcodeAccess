@@ -495,7 +495,7 @@
         const inBtn = document.getElementById('inBtn');
         const outBtn = document.getElementById('outBtn');
 
-        // In function
+        // Modify the "In" function
         inBtn.addEventListener('click', async () => {
             try {
                 // Retrieve data from localStorage
@@ -522,8 +522,21 @@
                     accessname: accessname,
                 };
 
+                // Save the "In" entry
                 await set(newUserAccessRef, accessData);
                 await set(newUserRef2, accessData);
+
+                // Store the scanned user's data in activeCheckIns under accessuid
+                const activeCheckInRef = push(ref(db, `Companies/${companyUid}/accesslist/${accessUid}/activeCheckIns`));
+                await set(activeCheckInRef, {
+                    username: username,
+                    useruid: useridnumber,
+                    usergroupname: groupname,
+                    accessname: accessname,
+                    checkInTime: new Date().toISOString(), // Store the check-in time
+                });
+
+                // Clear localStorage
                 localStorage.removeItem('scanuserdata');
                 localStorage.removeItem('groupuid');
                 localStorage.removeItem('useruid');
@@ -578,7 +591,76 @@
 
 
 
+        function autoCheckOutAt2200() {
+            // Get the current time
+            const now = new Date();
+            const currentHour = now.getHours();
 
+            // Check if the time is 22:00 or later
+            if (currentHour >= 22) {
+                // Reference to activeCheckIns under accessuid
+                const activeCheckInsRef = ref(db, `Companies/${companyUid}/accesslist/${accessUid}/activeCheckIns`);
+
+                // Fetch all active check-ins
+                get(activeCheckInsRef).then((snapshot) => {
+                    if (snapshot.exists()) {
+                        const activeCheckIns = snapshot.val();
+
+                        // Loop through each active check-in
+                        Object.keys(activeCheckIns).forEach((checkInId) => {
+                            const checkInData = activeCheckIns[checkInId];
+
+                            // Create an "Out" entry
+                            const newUserAccessRef = push(accessRef2);
+                            const newUserRef2 = push(userRef2);
+
+                            const accessData = {
+                                username: checkInData.username,
+                                useruid: checkInData.useruid,
+                                usergroupname: checkInData.usergroupname,
+                                datetime: now.toISOString(),
+                                inout: 'Out',
+                                accessname: checkInData.accessname,
+                            };
+
+                            // Save the "Out" entry
+                            set(newUserAccessRef, accessData)
+                                .then(() => {
+                                    console.log(`Automatic "Out" entry created for user ${checkInData.username}.`);
+                                })
+                                .catch((error) => {
+                                    console.error(`Error creating "Out" entry for user ${checkInData.username}:`, error);
+                                });
+
+                            set(newUserRef2, accessData)
+                                .then(() => {
+                                    console.log(`Automatic "Out" entry created in user access list for user ${checkInData.username}.`);
+                                })
+                                .catch((error) => {
+                                    console.error(`Error creating "Out" entry in user access list for user ${checkInData.username}:`, error);
+                                });
+
+                            // Remove the check-in from activeCheckIns
+                            const checkInRef = ref(db, `Companies/${companyUid}/accesslist/${accessUid}/activeCheckIns/${checkInId}`);
+                            remove(checkInRef)
+                                .then(() => {
+                                    console.log(`Check-in for user ${checkInData.username} removed from activeCheckIns.`);
+                                })
+                                .catch((error) => {
+                                    console.error(`Error removing check-in for user ${checkInData.username} from activeCheckIns:`, error);
+                                });
+                        });
+                    } else {
+                        console.log('No active check-ins found.');
+                    }
+                }).catch((error) => {
+                    console.error('Error fetching active check-ins:', error);
+                });
+            }
+        }
+
+        // Run the function every minute to check the time
+        setInterval(autoCheckOutAt2200, 600); // 60000 milliseconds = 1 minute
 
 
 

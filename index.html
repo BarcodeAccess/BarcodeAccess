@@ -3,60 +3,56 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home Page</title>
+    <title>Barcode Access</title>
     <link rel="stylesheet" href="styles6.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <!--Header-->
+    <!-- Header -->
     <header id="main-header">
-      <!--
-      <button>Feedback</button>
-      <button>About Us</button>
-      <button>Contact Us</button>
-      -->
+      <div class="header-content">
+      </div>
     </header>
-    <div id="headerspace"></div>
+
+    <!-- Main Container -->
     <div class="parentmaincontainer">
       <div id="maincontainer">
+        <!-- Register Button Section -->
         <div id="RegisterBtnContainer">
-          <h1>Barcode Access</h1>
+          <h2>Dormitory Entry and Exit System at KKJB</h2>
+          <p>Ensuring Secure and Organized Dormitory Management</p>
           <button class="homeButton" onclick="registerAdmin()">
             Register New Account
           </button>
         </div>
-        <!---
-        <div id="LoginBtnContainer">
-            <button onclick="loginAdmin()">Login as admin</button>
-            <button onclick="loginAccess()">Login as scan access</button>
-        </div>-->
 
+        <!-- Action Buttons Section -->
         <div id="loadpageBtnContainer">
           <div id="centered">
-            <button class="homeButton" onclick="pageAdmin()">Admin</button>
-            <button class="homeButton" onclick="pageAccess()">
+            <button class="homeButton action-btn" onclick="pageAdmin()">
+              Admin Panel
+            </button>
+            <button class="homeButton action-btn" onclick="pageAccess()">
               Scan Access
             </button>
           </div>
         </div>
       </div>
     </div>
-  </body>
 
-  <script>
-    function registerAdmin() {
-      window.location.href = "registerCompany.html";
-    }
-    function loginAdmin() {
-      window.location.href = "loginCompany.html";
-    }
-    function loginAccess() {
-      window.location.href = "loginAccess.html";
-    }
-    function pageAdmin() {
-      window.location.href = "pageCompany.html";
-    }
-    function pageAccess() {
-      window.location.href = "pageAccess.html";
-    }
-  </script>
+    <script>
+      function registerAdmin() {
+        window.location.href = "registerCompany.html";
+      }
+      function pageAdmin() {
+        window.location.href = "pageCompany.html";
+      }
+      function pageAccess() {
+        window.location.href = "pageAccess.html";
+      }
+    </script>
+  </body>
 </html>

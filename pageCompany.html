@@ -440,96 +440,96 @@
     // Call the function to fetch and display access list
     fetchAndDisplayAccessList();
 
-    document.querySelector('.saveBtn').addEventListener('click', async () => {
-    // Retrieve input values
-    const address = document.getElementById('caddressInp').value;
-    const phoneNumber = document.getElementById('cphonenumberInp').value;
-    const name = document.getElementById('cnameInp').value;
-    const chosenColor = document.getElementById('colorInp').value;
+        document.querySelector('.saveBtn').addEventListener('click', async () => {
+        // Retrieve input values
+        const address = document.getElementById('caddressInp').value;
+        const phoneNumber = document.getElementById('cphonenumberInp').value;
+        const name = document.getElementById('cnameInp').value;
+        const chosenColor = document.getElementById('colorInp').value;
 
-    // Update company details in the database
-    try {
-        await update(ref(db, 'Companies/' + uid), {
-            address: address,
-            phoneNumber: phoneNumber,
-            companyname: name,
-            chosenColor: chosenColor // Save the chosen color
+        // Update company details in the database
+        try {
+            await update(ref(db, 'Companies/' + uid), {
+                address: address,
+                phoneNumber: phoneNumber,
+                companyname: name,
+                chosenColor: chosenColor // Save the chosen color
+            });
+            alert('Data saved successfully.');
+        } catch (error) {
+            console.error('Error saving data: ', error);
+        }
+
+    // Convert canvas to Blob with proper MIME type
+    async function canvasToBlob(canvas, mimeType) {
+        return new Promise(resolve => {
+            canvas.toBlob(blob => {
+                resolve(blob);
+            }, mimeType);
         });
-        alert('Data saved successfully.');
-    } catch (error) {
-        console.error('Error saving data: ', error);
     }
 
-// Convert canvas to Blob with proper MIME type
-async function canvasToBlob(canvas, mimeType) {
-    return new Promise(resolve => {
-        canvas.toBlob(blob => {
-            resolve(blob);
-        }, mimeType);
+    // Handle image upload if an image is selected
+    const file = document.getElementById('imageUpload').files[0];
+    if (file) {
+        try {
+            // Create an off-screen canvas
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+
+            // Set the desired resolution scale factor
+            const scaleFactor = 5; // for example, 5x resolution
+
+            // Set canvas dimensions to the desired resolution
+            canvas.width = 210 * scaleFactor;
+            canvas.height = 70 * scaleFactor;
+
+            // Scale the context to match the resolution
+            ctx.scale(scaleFactor, scaleFactor);
+
+            const img = new Image();
+            img.src = URL.createObjectURL(file);
+
+            img.onload = async () => {
+                // Draw the image on the high-resolution canvas
+                ctx.drawImage(img, 0, 0, 210, 70);
+
+                // Use Pica to resize the high-resolution canvas to the target resolution
+                const pica = new window.pica();
+                const targetCanvas = document.createElement('canvas');
+                targetCanvas.width = 210;
+                targetCanvas.height = 70;
+
+                const resizedCanvas = await pica.resize(canvas, targetCanvas);
+
+                // Convert canvas to Blob with proper MIME type
+                const mimeType = 'image/png'; // Ensure PNG for transparency support
+                const blob = await canvasToBlob(resizedCanvas, mimeType);
+
+                // Upload the blob to Firebase Storage
+                const storageReference = storageRef(storage, `images/${uid}/logoimage.png`); // Ensure PNG extension
+                const snapshot = await uploadBytes(storageReference, blob);
+                console.log('Uploaded a blob or file!', snapshot);
+
+                // Get the download URL
+                const downloadURL = await getDownloadURL(storageReference);
+                console.log('File available at', downloadURL);
+
+                // Save the download URL to the Firebase Realtime Database
+                await set(ref(db, 'Companies/' + uid + '/imageurl'), downloadURL);
+
+                // Display the uploaded image
+                displayImage2(downloadURL);
+                displayImage(downloadURL);
+            };
+        } catch (error) {
+            console.error('Error processing image upload: ', error);
+            alert('Failed to process image upload.');
+        }
+    }
+
+
     });
-}
-
-// Handle image upload if an image is selected
-const file = document.getElementById('imageUpload').files[0];
-if (file) {
-    try {
-        // Create an off-screen canvas
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
-
-        // Set the desired resolution scale factor
-        const scaleFactor = 5; // for example, 5x resolution
-
-        // Set canvas dimensions to the desired resolution
-        canvas.width = 210 * scaleFactor;
-        canvas.height = 70 * scaleFactor;
-
-        // Scale the context to match the resolution
-        ctx.scale(scaleFactor, scaleFactor);
-
-        const img = new Image();
-        img.src = URL.createObjectURL(file);
-
-        img.onload = async () => {
-            // Draw the image on the high-resolution canvas
-            ctx.drawImage(img, 0, 0, 210, 70);
-
-            // Use Pica to resize the high-resolution canvas to the target resolution
-            const pica = new window.pica();
-            const targetCanvas = document.createElement('canvas');
-            targetCanvas.width = 210;
-            targetCanvas.height = 70;
-
-            const resizedCanvas = await pica.resize(canvas, targetCanvas);
-
-            // Convert canvas to Blob with proper MIME type
-            const mimeType = 'image/png'; // Ensure PNG for transparency support
-            const blob = await canvasToBlob(resizedCanvas, mimeType);
-
-            // Upload the blob to Firebase Storage
-            const storageReference = storageRef(storage, `images/${uid}/logoimage.png`); // Ensure PNG extension
-            const snapshot = await uploadBytes(storageReference, blob);
-            console.log('Uploaded a blob or file!', snapshot);
-
-            // Get the download URL
-            const downloadURL = await getDownloadURL(storageReference);
-            console.log('File available at', downloadURL);
-
-            // Save the download URL to the Firebase Realtime Database
-            await set(ref(db, 'Companies/' + uid + '/imageurl'), downloadURL);
-
-            // Display the uploaded image
-            displayImage2(downloadURL);
-            displayImage(downloadURL);
-        };
-    } catch (error) {
-        console.error('Error processing image upload: ', error);
-        alert('Failed to process image upload.');
-    }
-}
-
-
-});
 
 
 
@@ -659,7 +659,6 @@ async function createGroupName() {
         });
 }
 
-// Function to display the group list
 async function displayGroupList() {
     // Get UID from local storage
     const companyCreds = JSON.parse(localStorage.getItem('company-creds'));
@@ -679,6 +678,11 @@ async function displayGroupList() {
             snapshot.forEach((childSnapshot) => {
                 const groupKey = childSnapshot.key;
                 const groupData = childSnapshot.val();
+
+                // Check if the group name is null or empty
+                if (!groupData.groupName || groupData.groupName.trim() === '') {
+                    return; // Skip this group if the name is null or empty
+                }
 
                 // Create container for each group item
                 const groupContainer = document.createElement('div');
