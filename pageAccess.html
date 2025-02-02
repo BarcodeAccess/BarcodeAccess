@@ -575,8 +575,34 @@
                     accessname: accessname,
                 };
 
+                // Save the "Out" entry
                 await set(newUserAccessRef, accessData);
                 await set(newUserRef2, accessData);
+
+                // Remove the user from activeCheckIns
+                const activeCheckInsRef = ref(db, `Companies/${companyUid}/accesslist/${accessUid}/activeCheckIns`);
+                const activeCheckInsSnapshot = await get(activeCheckInsRef);
+
+                if (activeCheckInsSnapshot.exists()) {
+                    const activeCheckIns = activeCheckInsSnapshot.val();
+
+                    // Find the check-in entry for the current user
+                    Object.keys(activeCheckIns).forEach((checkInId) => {
+                        if (activeCheckIns[checkInId].useruid === useridnumber) {
+                            // Remove the check-in entry
+                            const checkInRef = ref(db, `Companies/${companyUid}/accesslist/${accessUid}/activeCheckIns/${checkInId}`);
+                            remove(checkInRef)
+                                .then(() => {
+                                    console.log(`Check-in for user ${username} removed from activeCheckIns.`);
+                                })
+                                .catch((error) => {
+                                    console.error(`Error removing check-in for user ${username} from activeCheckIns:`, error);
+                                });
+                        }
+                    });
+                }
+
+                // Clear localStorage
                 localStorage.removeItem('scanuserdata');
                 localStorage.removeItem('groupuid');
                 localStorage.removeItem('useruid');
@@ -660,8 +686,7 @@
         }
 
         // Run the function every minute to check the time
-        setInterval(autoCheckOutAt2200, 600); // 60000 milliseconds = 1 minute
-
+        setInterval(autoCheckOutAt2200, 60000); // 60000 milliseconds = 1 minute
 
 
 
